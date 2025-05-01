@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../../layouts/layout.astro';
+import ArticleCard from '../../../components/blog/ArticleCard.astro';
+
+// Definir la interfaz para el objeto de página
+interface PaginatedPage {
+  data: any[];
+  start: number;
+  end: number;
+  size: number;
+  total: number;
+  currentPage: number;
+  lastPage: number;
+  url: {
+    current: string;
+    prev: string | undefined;
+    next: string | undefined;
+  };
+}
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  const allBlogPosts = await getCollection('blog', ({ data }: { data: any }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  });
+  
+  // Ordenar por fecha (más recientes primero)
+  const sortedPosts = allBlogPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  
+  // Generar páginas con 12 artículos por página
+  return paginate(sortedPosts, { pageSize: 12 });
+}
+
+// Obtener la página actual de los props y asegurar el tipo correcto
+const { page } = Astro.props as { page: PaginatedPage };
+
+// Metadatos para SEO
+const title = `Página ${page.currentPage} | Blog | Un Amor Consciente`;
+const description = "Explora todos nuestros artículos sobre mindfulness, bienestar emocional y desarrollo consciente.";
+---
+
+<Layout title={title} description={description}>
+  <main>
+    <!-- Hero sencillo -->
+    <section class="bg-secondary-50 py-12 md:py-16">
+      <div class="container mx-auto px-4">
+        <div class="max-w-3xl">
+          <a href="/blog" class="mb-4 inline-flex items-center text-primary-600 hover:text-primary-700">
+            <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+            </svg>
+            Volver al blog
+          </a>
+          <h1 class="mb-6 font-heading text-3xl md:text-4xl font-medium">
+            Todos los artículos
+          </h1>
+          <p class="text-lg text-body-600">
+            Página {page.currentPage} de {page.lastPage}
+          </p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Listado de artículos -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {page.data.map((post: any) => (
+            <ArticleCard article={post} />
+          ))}
+        </div>
+        
+        <!-- Paginación -->
+        <div class="flex justify-center mt-12 space-x-2">
+          {page.url.prev && (
+            <a 
+              href={page.url.prev} 
+              class="inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-body-700 bg-white hover:bg-gray-50"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+              Anterior
+            </a>
+          )}
+          
+          <div class="flex items-center px-4 py-2 text-sm font-medium text-primary-700">
+            Página {page.currentPage} de {page.lastPage}
+          </div>
+          
+          {page.url.next && (
+            <a 
+              href={page.url.next} 
+              class="inline-flex items-center justify-center px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-body-700 bg-white hover:bg-gray-50"
+            >
+              Siguiente
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+              </svg>
+            </a>
+          )}
+        </div>
+      </div>
+    </section>
+    
+    <!-- CTA para suscripción -->
+    <section class="py-12 bg-secondary-50">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="mb-4 font-heading text-2xl font-medium">¿Te gusta nuestro contenido?</h2>
+        <p class="mx-auto mb-6 max-w-2xl text-body-600">
+          Suscríbete a nuestro boletín y recibe mensualmente reflexiones, prácticas y recursos directamente en tu correo electrónico.
+        </p>
+        <a 
+          href="/blog#newsletter" 
+          class="inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-primary-600 hover:bg-primary-700"
+        >
+          Suscribirme al boletín
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

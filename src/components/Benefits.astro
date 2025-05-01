@@ -1,0 +1,109 @@
+---
+const benefits = [
+  {
+    title: "Un espacio seguro sin juicio",
+    description: "Acompañamos desde la presencia real, con respeto y amor. Cada persona es recibida tal como es.",
+    icon: "heart"
+  },
+  {
+    title: "Herramientas para calmar la mente",
+    description: "A través de prácticas sencillas de mindfulness, autoindagación y consciencia corporal.",
+    icon: "mind"
+  },
+  {
+    title: "Procesos para sanar emociones",
+    description: "Caminamos contigo en momentos de cambio, duelo, ansiedad, bloqueos o preguntas profundas.",
+    icon: "heal"
+  },
+  {
+    title: "Una experiencia amorosa y profunda",
+    description: "Todo lo que compartimos lo hemos vivido. No entregamos fórmulas, sino acompañamiento real desde lo humano y lo espiritual.",
+    icon: "experience"
+  },
+  {
+    title: "Acompañamiento que honra tu ritmo",
+    description: "No se trata de \"llegar a algún lugar\", sino de caminar presente, habitando lo que hay con compasión.",
+    icon: "path"
+  },
+  {
+    title: "Mayor claridad y sentido",
+    description: "Para vivir tu vida con más calma, gratitud y autenticidad.",
+    icon: "clarity"
+  }
+];
+---
+
+<section class="py-16 md:py-24 bg-secondary-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-heading font-medium text-center mb-4">Beneficios</h2>
+    <p class="text-center text-body-500 max-w-3xl mx-auto mb-16">Lo que obtendrás al acompañarte con nosotros en tu camino</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+      {benefits.map((benefit) => (
+        <div class="flex">
+          <div class="flex-shrink-0 mr-4">
+            {benefit.icon === "heart" && (
+              <div class="bg-primary-100 p-3 rounded-lg">
+                <svg class="w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+            )}
+            {benefit.icon === "mind" && (
+              <div class="bg-primary-100 p-3 rounded-lg">
+                <svg class="w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            )}
+            {benefit.icon === "heal" && (
+              <div class="bg-primary-100 p-3 rounded-lg">
+                <svg class="w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+            )}
+            {benefit.icon === "experience" && (
+              <div class="bg-primary-100 p-3 rounded-lg">
+                <svg class="w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+            )}
+            {benefit.icon === "path" && (
+              <div class="bg-primary-100 p-3 rounded-lg">
+                <svg class="w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+            )}
+            {benefit.icon === "clarity" && (
+              <div class="bg-primary-100 p-3 rounded-lg">
+                <svg class="w-6 h-6 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+            )}
+          </div>
+          <div>
+            <h3 class="font-heading text-lg font-medium mb-2">{benefit.title}</h3>
+            <p class="text-body-500">{benefit.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <div class="mt-16 text-center">
+      <p class="italic text-lg text-primary-600 mb-8">
+        "Un recordatorio constante de que el Amor es camino y hogar. Incluso cuando hay tormenta."
+      </p>
+      <button class="whatsapp-btn bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-md transition-colors duration-300 ease-in-out flex items-center mx-auto">
+        <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+        </svg>
+        Iniciar mi camino
+      </button>
+    </div>
+  </div>
+</section>

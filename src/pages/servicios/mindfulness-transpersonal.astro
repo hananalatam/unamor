@@ -1,0 +1,423 @@
+---
+import Layout from '../../layouts/layout.astro';
+
+// SEO
+const title = "Acompañamiento desde el Mindfulness Transpersonal | Un Amor Consciente";
+const description = "Un espacio para calmar la mente, sanar emociones y reconectar con lo esencial a través del mindfulness transpersonal. Acompañamiento personalizado para tu bienestar emocional.";
+---
+
+<Layout title={title} description={description}>
+  <main>
+    <!-- Hero de la página -->
+    <section class="relative py-20 overflow-hidden">
+      <!-- Imagen de fondo -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/images/services/acompanamientos.jpg" 
+          alt="Mindfulness Transpersonal" 
+          class="w-full h-full object-cover"
+        />
+        <!-- Overlay con gradiente para mejorar legibilidad del texto -->
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-900/80 to-primary-800/60"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl text-white">
+          <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-medium mb-6 leading-tight">
+            Acompañamiento desde el Mindfulness Transpersonal
+          </h1>
+          <p class="text-lg md:text-xl mb-8 text-white/90 max-w-2xl">
+            Un espacio para calmar la mente, sanar emociones y reconectar con lo esencial en tu vida.
+          </p>
+          <button class="whatsapp-btn flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-md transition-colors duration-300 ease-in-out">
+            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            Consultar disponibilidad
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Breadcrumbs -->
+    <div class="bg-secondary-50 py-4">
+      <div class="container mx-auto px-4">
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+              <a href="/" class="text-body-500 hover:text-primary-600 inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                Inicio
+              </a>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="w-6 h-6 text-body-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <a href="/servicios" class="text-body-500 hover:text-primary-600 ml-1 md:ml-2">Servicios</a>
+              </div>
+            </li>
+            <li aria-current="page">
+              <div class="flex items-center">
+                <svg class="w-6 h-6 text-body-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <span class="text-primary-600 ml-1 md:ml-2 font-medium">Mindfulness Transpersonal</span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Descripción del servicio -->
+    <section class="py-16 md:py-20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-heading font-medium mb-6">¿Qué es el Mindfulness Transpersonal?</h2>
+            <p class="mb-6 text-lg">
+              El Mindfulness Transpersonal es un enfoque que integra la práctica de la atención plena tradicional con una perspectiva que reconoce dimensiones más amplias de nuestra consciencia y experiencia espiritual.
+            </p>
+            <p class="mb-6">
+              No se limita a reducir el estrés o mejorar la concentración (aspectos importantes también), sino que busca facilitar una conexión profunda con nuestra esencia, con el sentido de la vida y con la sabiduría que habita en cada persona.
+            </p>
+            <p class="mb-6">
+              Este abordaje honra tanto el rigor de las prácticas contemplativas milenarias como los aportes de la psicología transpersonal, creando un puente entre la ciencia y la espiritualidad vivida en libertad.
+            </p>
+          </div>
+          <div class="relative">
+            <img 
+              src="/images/services/mindfulness-details-1.jpg" 
+              alt="Práctica de mindfulness transpersonal" 
+              class="rounded-lg shadow-lg w-full h-auto"
+              loading="lazy"
+            />
+            <div class="absolute -bottom-6 -left-6 bg-primary-50 rounded-lg p-6 shadow-lg hidden md:block">
+              <p class="italic text-primary-700 font-heading">
+                "El mindfulness transpersonal nos invita a habitar la presencia, reconociendo que somos más que nuestra historia personal."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Beneficios -->
+    <section class="py-16 md:py-20 bg-secondary-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-heading font-medium text-center mb-16">Beneficios del acompañamiento personal</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-lg shadow-md p-8 transform transition-transform hover:-translate-y-1 hover:shadow-lg">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <svg class="w-8 h-8 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-medium text-center mb-4">Espacio seguro sin juicio</h3>
+            <p class="text-center text-body-500">
+              Un ambiente de aceptación incondicional donde puedes mostrarte tal como eres, con tus luces y sombras, sin miedo a ser juzgado.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow-md p-8 transform transition-transform hover:-translate-y-1 hover:shadow-lg">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <svg class="w-8 h-8 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-medium text-center mb-4">Calma mental</h3>
+            <p class="text-center text-body-500">
+              Herramientas prácticas para sosegar la mente agitada y encontrar claridad en medio del ruido interior y exterior.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow-md p-8 transform transition-transform hover:-translate-y-1 hover:shadow-lg">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <svg class="w-8 h-8 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-medium text-center mb-4">Sanación emocional</h3>
+            <p class="text-center text-body-500">
+              Procesos para integrar emociones difíciles, transformar patrones limitantes y sanar heridas del pasado.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow-md p-8 transform transition-transform hover:-translate-y-1 hover:shadow-lg">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <svg class="w-8 h-8 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-medium text-center mb-4">Energía renovada</h3>
+            <p class="text-center text-body-500">
+              Recupera vitalidad al liberar el desgaste que producen los pensamientos rumiativos y las preocupaciones constantes.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow-md p-8 transform transition-transform hover:-translate-y-1 hover:shadow-lg">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <svg class="w-8 h-8 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-medium text-center mb-4">Conexión con tu propósito</h3>
+            <p class="text-center text-body-500">
+              Clarifica tu dirección vital y reconecta con lo que realmente importa para ti, más allá de expectativas externas.
+            </p>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow-md p-8 transform transition-transform hover:-translate-y-1 hover:shadow-lg">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-6 mx-auto">
+              <svg class="w-8 h-8 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-medium text-center mb-4">Presencia en lo cotidiano</h3>
+            <p class="text-center text-body-500">
+              Integra las prácticas en tu día a día, transformando actividades ordinarias en oportunidades para despertar.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ¿Cómo funciona? -->
+    <section class="py-16 md:py-20">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-heading font-medium text-center mb-16">¿Cómo funciona el acompañamiento?</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div class="lg:col-span-5">
+            <img 
+              src="/images/services/acom-sesion.webp" 
+              alt="Sesión de acompañamiento" 
+              class="rounded-lg shadow-lg w-full h-auto"
+              loading="lazy"
+            />
+          </div>
+          
+          <div class="lg:col-span-7">
+            <div class="space-y-8">
+              <div class="flex">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-medium">
+                    1
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-heading font-medium mb-2">Sesión inicial</h3>
+                  <p class="text-body-500">
+                    Una primera conversación para conocer tu situación actual, necesidades y objetivos. Establecemos juntos el punto de partida y una dirección inicial para el proceso.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="flex">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-medium">
+                    2
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-heading font-medium mb-2">Encuentros regulares</h3>
+                  <p class="text-body-500">
+                    Sesiones semanales o quincenales (según tu necesidad) donde combinamos conversación, prácticas guiadas de mindfulness, autoindagación y herramientas específicas para tu momento vital.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="flex">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-medium">
+                    3
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-heading font-medium mb-2">Práctica personal</h3>
+                  <p class="text-body-500">
+                    Entre sesiones, cuentas con prácticas y herramientas personalizadas para integrar en tu vida cotidiana, adaptadas a tu disponibilidad y circunstancias.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="flex">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-medium">
+                    4
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-heading font-medium mb-2">Acompañamiento continuo</h3>
+                  <p class="text-body-500">
+                    Disponibilidad para consultas puntuales entre sesiones y material complementario que apoya tu proceso y profundiza en temas específicos.
+                  </p>
+                </div>
+              </div>
+              
+              <div class="flex">
+                <div class="flex-shrink-0 mr-4">
+                  <div class="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center text-primary-600 font-medium">
+                    5
+                  </div>
+                </div>
+                <div>
+                  <h3 class="text-xl font-heading font-medium mb-2">Evaluación y ajuste</h3>
+                  <p class="text-body-500">
+                    Revisamos periódicamente el proceso, celebramos avances y realizamos ajustes para asegurar que el acompañamiento responde a tu evolución.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="py-16 md:py-20 bg-secondary-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-heading font-medium text-center mb-16">Lo que dicen quienes han vivido el proceso</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white rounded-lg shadow-md p-8 relative">
+            <div class="absolute -top-5 left-8 text-primary-200">
+              <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+              </svg>
+            </div>
+            <div class="pt-6">
+              <p class="text-body-600 italic mb-6">
+                "El acompañamiento desde el mindfulness transpersonal ha sido un regalo. He aprendido a relacionarme con mis emociones difíciles sin ahogarme en ellas, encontrando un espacio interior de calma que no sabía que existía en mí."
+              </p>
+              <div class="flex items-center">
+                <img src="/images/testimonials/person1.jpg" alt="Laura R." class="w-12 h-12 rounded-full object-cover mr-4" />
+                <div>
+                  <h4 class="font-medium">Laura R.</h4>
+                  <p class="text-body-500 text-sm">42 años, Profesora</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow-md p-8 relative">
+            <div class="absolute -top-5 left-8 text-primary-200">
+                <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+                <div class="pt-6">
+                  <p class="text-body-600 italic mb-6">
+                    "El acompañamiento desde el mindfulness transpersonal ha sido un regalo. He aprendido a relacionarme con mis emociones difíciles sin ahogarme en ellas, encontrando un espacio interior de calma que no sabía que existía en mí."
+                  </p>
+                  <div class="flex items-center">
+                    <img src="/images/testimonials/person1.jpg" alt="Laura R." class="w-12 h-12 rounded-full object-cover mr-4" />
+                    <div>
+                      <h4 class="font-medium">Laura R.</h4>
+                      <p class="text-body-500 text-sm">42 años, Profesora</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-white rounded-lg shadow-md p-8 relative">
+                <div class="absolute -top-5 left-8 text-primary-200">
+                  <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+                <div class="pt-6">
+                  <p class="text-body-600 italic mb-6">
+                    "Llevaba años con ansiedad crónica, probando diferentes terapias. El enfoque del mindfulness transpersonal me ayudó a comprender que yo no soy mis pensamientos y que puedo observarlos sin fusionarme con ellos. Ha sido transformador."
+                  </p>
+                  <div class="flex items-center">
+                    <img src="/images/testimonials/person2.jpg" alt="Carlos M." class="w-12 h-12 rounded-full object-cover mr-4" />
+                    <div>
+                      <h4 class="font-medium">Carlos M.</h4>
+                      <p class="text-body-500 text-sm">35 años, Diseñador</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-white rounded-lg shadow-md p-8 relative">
+                <div class="absolute -top-5 left-8 text-primary-200">
+                  <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+                <div class="pt-6">
+                  <p class="text-body-600 italic mb-6">
+                    "Tras el duelo por la pérdida de mi madre, me sentía perdida y desconectada. Las sesiones me han dado herramientas para honrar el dolor sin que me paralice, y para reconectar con la gratitud y la presencia."
+                  </p>
+                  <div class="flex items-center">
+                    <img src="/images/testimonials/person3.jpg" alt="Ana P." class="w-12 h-12 rounded-full object-cover mr-4" />
+                    <div>
+                      <h4 class="font-medium">Ana P.</h4>
+                      <p class="text-body-500 text-sm">51 años, Abogada</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    
+      
+    
+        <!-- CTA Final -->
+        <section class="py-16 md:py-20 bg-primary-500 text-white">
+          <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-heading font-medium mb-6">¿Listo para iniciar tu camino interior?</h2>
+            <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
+              Contacta con nosotras y agendemos una llamada inicial para conocer más sobre lo que estás buscando y cómo podemos acompañarte.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <button class="whatsapp-btn flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-md transition-colors duration-300 ease-in-out">
+                <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                Contactar por WhatsApp
+              </button>
+              <a href="mailto:mamapromero62@gmail.com" class="inline-flex items-center justify-center bg-white text-primary-700 font-medium py-3 px-8 rounded-md transition-colors duration-300 ease-in-out hover:bg-primary-50">
+                <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Enviar email
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+    
+      <script>
+        document.addEventListener('astro:page-load', () => {
+          // Configurar las preguntas frecuentes
+          const faqButtons = document.querySelectorAll('.faq-button');
+          
+          faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              const isExpanded = button.getAttribute('aria-expanded') === 'true';
+              const answerId = button.getAttribute('aria-controls');
+              const answerElement = document.getElementById(answerId || '');
+              const icon = button.querySelector('svg');
+              
+              if (isExpanded) {
+                button.setAttribute('aria-expanded', 'false');
+                if (answerElement) {
+                  answerElement.classList.add('hidden');
+                  answerElement.setAttribute('aria-hidden', 'true');
+                  if (icon) icon.classList.remove('rotate-180');
+                }
+              } else {
+                button.setAttribute('aria-expanded', 'true');
+                if (answerElement) {
+                  answerElement.classList.remove('hidden');
+                  answerElement.setAttribute('aria-hidden', 'false');
+                  if (icon) icon.classList.add('rotate-180');
+                }
+              }
+            });
+          });
+        });
+      </script>
+    </Layout>

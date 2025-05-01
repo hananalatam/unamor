@@ -1,0 +1,279 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/layout.astro';
+import ArticleCard from '../../components/blog/ArticleCard.astro';
+
+// Obtener todos los artículos publicados
+const allBlogPosts = await getCollection('blog', ({ data }: { data: any }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+// Ordenar por fecha de publicación (más recientes primero)
+const sortedPosts = allBlogPosts.sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Obtener todas las categorías únicas
+const categories = [...new Set(allBlogPosts.map((post: any) => post.data.category))].sort();
+
+// Obtener todas las etiquetas únicas
+const allTags = allBlogPosts.flatMap((post: any) => post.data.tags);
+const uniqueTags = [...new Set(allTags)].sort();
+
+// Filtrar los artículos destacados y los más recientes
+const featuredPosts = sortedPosts.filter((post: any) => post.data.featured);
+const recentPosts = sortedPosts.filter((post: any) => !post.data.featured).slice(0, 6);
+
+// Metadatos para SEO
+const title = "Blog | Un Amor Consciente";
+const description = "Artículos, reflexiones y recursos sobre mindfulness, bienestar emocional y desarrollo consciente. Encuentra inspiración para tu camino interior.";
+---
+
+<Layout title={title} description={description}>
+  <main>
+    <!-- Hero del blog con artículo destacado principal -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-secondary-50 to-white pt-16 pb-20 md:pt-24 md:pb-28">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-medium mb-6 text-body-800">
+            Blog <span class="text-primary-600">Un Amor Consciente</span>
+          </h1>
+          <p class="text-lg md:text-xl text-body-600 max-w-3xl mx-auto mb-10">
+            Encuentra artículos, reflexiones y prácticas para cultivar presencia, 
+            calma interior y bienestar emocional en tu vida cotidiana.
+          </p>
+          <div class="flex flex-wrap justify-center gap-3 mb-16">
+            {categories.slice(0, 5).map((category) => (
+              <a
+                href={`/blog/categoria/${(category as string).toLowerCase().replace(/ /g, '-')}`}
+                class="rounded-full bg-white px-4 py-2 text-sm font-medium text-primary-700 shadow-sm transition-colors hover:bg-primary-50 border border-primary-100"
+              >
+                {category as string}
+              </a>
+            ))}
+            <a
+              href="#todas-categorias"
+              class="rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700 shadow-sm transition-colors hover:bg-primary-100"
+            >
+              Ver todas
+            </a>
+          </div>
+        </div>
+
+        {featuredPosts.length > 0 && (
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Artículo destacado principal */}
+            <div class="lg:col-span-7 xl:col-span-8">
+              <article class="relative h-full overflow-hidden rounded-xl shadow-lg transition-transform hover:-translate-y-1 group">
+                <a href={`/blog/${featuredPosts[0].slug}`} class="block h-full">
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10 z-10"></div>
+                  <img
+                    src={featuredPosts[0].data.heroImage || '/images/blog/default-hero.jpg'}
+                    alt={featuredPosts[0].data.title}
+                    class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 aspect-[16/10]"
+                    width={800}
+                    height={500}
+                  />
+                  <div class="absolute bottom-0 left-0 z-20 p-6 md:p-8 w-full">
+                    <div class="mb-3">
+                      <span class="inline-block rounded-full bg-primary-500 px-3 py-1 text-xs font-bold text-white">
+                        {featuredPosts[0].data.category}
+                      </span>
+                    </div>
+                    <h2 class="text-2xl md:text-3xl lg:text-4xl font-heading font-medium mb-3 text-white">
+                      {featuredPosts[0].data.title}
+                    </h2>
+                    <p class="text-white/90 mb-4 line-clamp-2">
+                      {featuredPosts[0].data.description}
+                    </p>
+                    <div class="flex items-center">
+                      {featuredPosts[0].data.authorImage && (
+                        <img
+                          src={featuredPosts[0].data.authorImage}
+                          alt={featuredPosts[0].data.author}
+                          class="w-10 h-10 rounded-full object-cover mr-3 border-2 border-white"
+                        />
+                      )}
+                      <div>
+                        <p class="text-white font-medium text-sm">
+                          {featuredPosts[0].data.author}
+                        </p>
+                        <p class="text-white/80 text-xs">
+                          {new Date(featuredPosts[0].data.pubDate).toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </article>
+            </div>
+
+            {/* Artículos destacados secundarios */}
+            <div class="lg:col-span-5 xl:col-span-4">
+              <div class="grid gap-6 h-full">
+                {featuredPosts.slice(1, 3).map((post: any) => (
+                  <article class="relative overflow-hidden rounded-xl shadow-md transition-transform hover:-translate-y-1 group">
+                    <a href={`/blog/${post.slug}`} class="block">
+                      <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10 z-10"></div>
+                      <img
+                        src={post.data.heroImage || '/images/blog/default-hero.jpg'}
+                        alt={post.data.title}
+                        class="w-full object-cover transition-transform duration-500 group-hover:scale-105 aspect-[16/9]"
+                        width={400}
+                        height={225}
+                      />
+                      <div class="absolute bottom-0 left-0 z-20 p-4 w-full">
+                        <div class="mb-2">
+                          <span class="inline-block rounded-full bg-primary-500 px-2 py-1 text-xs font-bold text-white">
+                            {post.data.category}
+                          </span>
+                        </div>
+                        <h3 class="text-lg font-heading font-medium mb-1 text-white">
+                          {post.data.title}
+                        </h3>
+                        <p class="text-white/80 text-xs">
+                          {new Date(post.data.pubDate).toLocaleDateString('es-ES', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                    </a>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Categorías y búsqueda -->
+    <section id="todas-categorias" class="py-12 bg-secondary-50">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+          <h2 class="text-2xl font-heading font-medium mb-4 md:mb-0">Explora por categoría</h2>
+          <div class="relative">
+            <input
+              type="text"
+              placeholder="Buscar artículos..."
+              class="w-full md:w-64 px-4 py-2 pl-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+            />
+            <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {categories.map((category) => {
+            const count = allBlogPosts.filter((post: any) => post.data.category === category).length;
+            return (
+              <a
+                href={`/blog/categoria/${(category as string).toLowerCase().replace(/ /g, '-')}`}
+                class="flex items-center justify-between bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:border-primary-200 hover:shadow-md transition-all"
+              >
+                <span class="font-medium text-body-700">{category as string}</span>
+                <span class="bg-secondary-100 text-primary-700 text-xs font-medium px-2 py-1 rounded-full">
+                  {count} {count === 1 ? 'artículo' : 'artículos'}
+                </span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Artículos recientes -->
+    <section class="py-16">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl font-heading font-medium mb-10 text-center">Artículos recientes</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {sortedPosts.slice(0, 6).map((post: any) => (
+            <ArticleCard article={post} />
+          ))}
+        </div>
+        
+        {sortedPosts.length > 6 && (
+          <div class="mt-12 text-center">
+            <button id="load-more" class="bg-primary-50 hover:bg-primary-100 text-primary-700 font-medium py-3 px-6 rounded-md transition-colors duration-300 inline-flex items-center">
+              Cargar más artículos
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Etiquetas populares -->
+    <section class="py-12 bg-secondary-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-heading font-medium mb-8 text-center">Etiquetas populares</h2>
+        
+        <div class="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
+          {uniqueTags.map((tag) => {
+            const count = allBlogPosts.filter((post: any) => post.data.tags.includes(tag)).length;
+            return (
+              <a
+                href={`/blog/etiqueta/${(tag as string).toLowerCase().replace(/ /g, '-')}`}
+                class="bg-white px-4 py-2 rounded-full shadow-sm text-body-600 hover:text-primary-700 hover:bg-primary-50 transition-colors text-sm"
+              >
+                #{tag as string} <span class="text-xs text-body-400">({count})</span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    <!-- Suscripción al boletín -->
+    <section class="py-16 bg-gradient-to-r from-primary-500 to-primary-600 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl font-heading font-medium mb-4">Recibe nuestras reflexiones en tu email</h2>
+        <p class="max-w-2xl mx-auto mb-8 opacity-90">
+          Suscríbete a nuestro boletín y recibe cada mes artículos, prácticas y reflexiones para nutrir tu camino de autocuidado y desarrollo consciente.
+        </p>
+        
+        <form class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+          <input
+            type="email"
+            placeholder="Tu correo electrónico"
+            required
+            class="flex-grow px-4 py-3 rounded-md bg-white/10 border border-white/30 text-white placeholder:text-white/60 focus:outline-none focus:ring-2 focus:ring-white/50"
+          />
+          <button
+            type="submit"
+            class="bg-white text-primary-700 hover:bg-primary-50 font-medium py-3 px-6 rounded-md transition-colors"
+          >
+            Suscribirme
+          </button>
+        </form>
+        
+        <p class="mt-4 text-sm opacity-80">
+          Respetamos tu privacidad. Puedes darte de baja en cualquier momento.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Script para cargar más artículos
+    document.addEventListener('astro:page-load', () => {
+      const loadMoreBtn = document.getElementById('load-more');
+      
+      if (loadMoreBtn) {
+        loadMoreBtn.addEventListener('click', () => {
+          // Esta es una versión simplificada - normalmente harías una llamada AJAX
+          // O redireccionar a una página de archivo completo
+          window.location.href = '/blog/pagina/2';
+        });
+      }
+    });
+  </script>
+</Layout>

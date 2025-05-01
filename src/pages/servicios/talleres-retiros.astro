@@ -1,0 +1,556 @@
+---
+import Layout from '../../layouts/layout.astro';
+
+// SEO
+const title = "Talleres y Retiros | Un Amor Consciente";
+const description = "Encuentros profundos donde unimos presencia, consciencia y amor para reconectar con lo sagrado en lo cotidiano. Talleres y retiros de mindfulness transpersonal.";
+---
+
+<Layout title={title} description={description}>
+  <main>
+    <!-- Hero de la página -->
+    <section class="relative py-20 overflow-hidden">
+      <!-- Imagen de fondo -->
+      <div class="absolute inset-0 z-0">
+        <img 
+          src="/images/services/talleres.webp" 
+          alt="Talleres y retiros de mindfulness" 
+          class="w-full h-full object-cover"
+        />
+        <!-- Overlay con gradiente para mejorar legibilidad del texto -->
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-900/80 to-primary-800/60"></div>
+      </div>
+      
+      <div class="container mx-auto px-4 relative z-10">
+        <div class="max-w-3xl text-white">
+          <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-medium mb-6 leading-tight">
+            Talleres y Retiros
+          </h1>
+          <p class="text-lg md:text-xl mb-8 text-white/90 max-w-2xl">
+            Encuentros profundos donde unimos presencia, consciencia y amor para reconectar con lo sagrado en lo cotidiano.
+          </p>
+          <button class="whatsapp-btn flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-6 rounded-md transition-colors duration-300 ease-in-out">
+            <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            Consultar próximas fechas
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Breadcrumbs -->
+    <div class="bg-secondary-50 py-4">
+      <div class="container mx-auto px-4">
+        <nav class="flex" aria-label="Breadcrumb">
+          <ol class="inline-flex items-center space-x-1 md:space-x-3">
+            <li class="inline-flex items-center">
+              <a href="/" class="text-body-500 hover:text-primary-600 inline-flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                Inicio
+              </a>
+            </li>
+            <li>
+              <div class="flex items-center">
+                <svg class="w-6 h-6 text-body-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <a href="/servicios" class="text-body-500 hover:text-primary-600 ml-1 md:ml-2">Servicios</a>
+              </div>
+            </li>
+            <li aria-current="page">
+              <div class="flex items-center">
+                <svg class="w-6 h-6 text-body-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                <span class="text-primary-600 ml-1 md:ml-2 font-medium">Talleres y Retiros</span>
+              </div>
+            </li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Introducción -->
+    <section class="py-16 md:py-20">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-3xl md:text-4xl font-heading font-medium mb-6">Espacios de transformación colectiva</h2>
+            <p class="mb-6 text-lg">
+              Nuestros talleres y retiros son espacios sagrados donde creamos las condiciones para un encuentro profundo con nosotros mismos, con los demás y con lo trascendente.
+            </p>
+            <p class="mb-6">
+              A través de prácticas de mindfulness, meditaciones guiadas, rituales significativos, autoindagación y diálogo consciente, facilitamos experiencias que van más allá de lo mental y conectan con la sabiduría del cuerpo y del corazón.
+            </p>
+            <p class="mb-6">
+              Son momentos para pausar el ritmo acelerado de la vida cotidiana, soltar lo que pesa, recordar lo esencial y redescubrir esa conexión profunda que tantas veces olvidamos pero que siempre está presente.
+            </p>
+          </div>
+          <div class="relative">
+            <img 
+              src="/images/services/taller-details-1.jpg" 
+              alt="Taller de mindfulness grupal" 
+              class="rounded-lg shadow-lg w-full h-auto"
+              loading="lazy"
+            />
+            <div class="absolute -bottom-6 -left-6 bg-primary-50 rounded-lg p-6 shadow-lg hidden md:block">
+              <p class="italic text-primary-700 font-heading">
+                "En el encuentro con otros que caminan sendas similares, descubrimos que no estamos solos en nuestro viaje interior."
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tipos de talleres -->
+    <section class="py-16 md:py-20 bg-secondary-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-heading font-medium text-center mb-16">Nuestras propuestas</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Taller 1
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full transition-transform hover:-translate-y-2 hover:shadow-xl">
+            <div class="h-48 overflow-hidden">
+              <img 
+                src="/images/services/taller-mindfulness.jpg" 
+                alt="Taller de introducción al mindfulness" 
+                class="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-heading font-medium mb-4">Introducción al Mindfulness</h3>
+              <p class="text-body-500 mb-6">
+                Taller introductorio donde aprenderás los fundamentos de la atención plena, con prácticas sencillas para cultivar presencia en tu vida cotidiana.
+              </p>
+              <div class="flex flex-col gap-2 mb-6">
+                <div class="flex items-center text-sm">
+                  <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Duración: 4 horas</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>Modalidad: Presencial y online</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Para todos los niveles</span>
+                </div>
+              </div>
+              <button class="whatsapp-btn w-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 ease-in-out text-sm">
+                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Solicitar información
+              </button>
+            </div>
+          </div> -->
+          
+          <!-- Taller 2 
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full transition-transform hover:-translate-y-2 hover:shadow-xl">
+            <div class="h-48 overflow-hidden">
+              <img 
+                src="/images/services/taller-emociones.jpg" 
+                alt="Taller de sanación emocional" 
+                class="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-heading font-medium mb-4">Sanando Emociones</h3>
+              <p class="text-body-500 mb-6">
+                Un espacio para explorar y transformar patrones emocionales limitantes a través del mindfulness y la autocompasión.
+              </p>
+              <div class="flex flex-col gap-2 mb-6">
+                <div class="flex items-center text-sm">
+                  <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Duración: 8 horas (2 sesiones)</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>Modalidad: Presencial y online</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Nivel intermedio</span>
+                </div>
+              </div>
+              <button class="whatsapp-btn w-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 ease-in-out text-sm">
+                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Solicitar información
+              </button>
+            </div>
+          </div>-->
+          
+          <!-- Taller 3 
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full transition-transform hover:-translate-y-2 hover:shadow-xl">
+            <div class="h-48 overflow-hidden">
+              <img 
+                src="/images/services/taller-duelo.jpg" 
+                alt="Taller sobre el duelo" 
+                class="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-heading font-medium mb-4">El Camino del Duelo</h3>
+              <p class="text-body-500 mb-6">
+                Un taller para honrar y transformar las pérdidas significativas, encontrando sentido y crecimiento en el proceso.
+              </p>
+              <div class="flex flex-col gap-2 mb-6">
+                <div class="flex items-center text-sm">
+                  <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Duración: 6 horas</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>Modalidad: Presencial</span>
+                </div>
+                <div class="flex items-center text-sm">
+                  <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Para personas en proceso de duelo</span>
+                </div>
+              </div>
+              <button class="whatsapp-btn w-full flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-md transition-colors duration-300 ease-in-out text-sm">
+                <svg class="w-4 h-4 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                Solicitar información
+              </button>
+            </div>
+          </div>-->
+          
+          <!-- Retiro -->
+          <div class="bg-white rounded-lg shadow-lg overflow-hidden h-full transition-transform hover:-translate-y-2 hover:shadow-xl md:col-span-2 lg:col-span-3">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+              <div class="h-60 lg:h-auto overflow-hidden">
+                <img 
+                  src="/images/services/taller-gratitud.jpg" 
+                  alt="Retiro de mindfulness en la naturaleza" 
+                  class="w-full h-full object-cover transition-transform hover:scale-105 duration-700"
+                />
+              </div>
+              <div class="p-8">
+                <div class="inline-block bg-primary-100 text-primary-700 px-3 py-1 text-xs font-medium rounded-full mb-4">
+                  Destacado
+                </div>
+                <h3 class="text-2xl font-heading font-medium mb-4">Retiro de Mindfulness Transpersonal</h3>
+                <p class="text-body-500 mb-6">
+                  Una experiencia inmersiva de 2-3 días en contacto con la naturaleza para profundizar en la práctica contemplativa, sanar lo que necesita sanación y reconectar con tu esencia.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                  <div class="flex items-center text-sm">
+                    <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Duración: 2-3 días completos</span>
+                  </div>
+                  <div class="flex items-center text-sm">
+                    <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span>Ubicaciones en naturaleza</span>
+                  </div>
+                  <div class="flex items-center text-sm">
+                    <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span>Grupos pequeños (máx. 15 personas)</span>
+                  </div>
+                  <div class="flex items-center text-sm">
+                    <svg class="w-5 h-5 mr-2 text-primary-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Todo incluido (alojamiento, comidas)</span>
+                  </div>
+                </div>
+                <p class="text-body-600 italic mb-6">
+                  "Nuestros retiros son experiencias transformadoras donde encontrarás espacio para el silencio, la práctica, el compartir consciente y rituales significativos que honran los ciclos de vida."
+                </p>
+                <button class="whatsapp-btn flex items-center justify-center bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-6 rounded-md transition-colors duration-300 ease-in-out">
+                  <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  Consultar próximas fechas
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Qué incluyen nuestros talleres -->
+    <section class="py-16 md:py-20">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-heading font-medium text-center mb-16">¿Qué incluyen nuestros talleres?</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
+            <div class="bg-primary-100 p-4 rounded-full mb-6">
+              <svg class="w-10 h-10 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-medium mb-4">Material didáctico</h3>
+            <p class="text-body-500">
+              Cuaderno de trabajo, lecturas inspiradoras y recursos prácticos para continuar el aprendizaje después del taller.
+            </p>
+          </div>
+          
+          <div class="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
+            <div class="bg-primary-100 p-4 rounded-full mb-6">
+                <svg class="w-10 h-10 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-heading font-medium mb-4">Prácticas guiadas</h3>
+                <p class="text-body-500">
+                  Meditaciones, visualizaciones y ejercicios experienciales que te permiten integrar el aprendizaje desde la vivencia directa.
+                </p>
+              </div>
+              
+              <div class="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
+                <div class="bg-primary-100 p-4 rounded-full mb-6">
+                  <svg class="w-10 h-10 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-heading font-medium mb-4">Círculos de compartir</h3>
+                <p class="text-body-500">
+                  Espacios seguros de diálogo consciente donde cada participante puede expresarse y ser escuchado con respeto y sin juicio.
+                </p>
+              </div>
+              
+              <div class="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
+                <div class="bg-primary-100 p-4 rounded-full mb-6">
+                  <svg class="w-10 h-10 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-heading font-medium mb-4">Rituales significativos</h3>
+                <p class="text-body-500">
+                  Ceremonias y prácticas simbólicas que honran momentos de transición, intenciones o procesos de sanación en un contexto respetuoso.
+                </p>
+              </div>
+              
+              <div class="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
+                <div class="bg-primary-100 p-4 rounded-full mb-6">
+                  <svg class="w-10 h-10 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-heading font-medium mb-4">Acompañamiento posterior</h3>
+                <p class="text-body-500">
+                  Seguimiento después del taller para resolver dudas, profundizar en la práctica y seguir integrando el aprendizaje en tu día a día.
+                </p>
+              </div>
+              
+              <div class="bg-white p-8 rounded-lg shadow-md flex flex-col items-center text-center">
+                <div class="bg-primary-100 p-4 rounded-full mb-6">
+                  <svg class="w-10 h-10 text-primary-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-heading font-medium mb-4">Comunidad de apoyo</h3>
+                <p class="text-body-500">
+                  Conexión con otras personas que comparten el interés por el desarrollo consciente, creando una red de apoyo mutuo en el camino.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+    
+        <!-- Testimonios 
+        <section class="py-16 md:py-20 bg-secondary-50">
+          <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-heading font-medium text-center mb-16">Experiencias transformadoras</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+              <div class="bg-white rounded-lg shadow-md p-8 relative">
+                <div class="absolute -top-5 left-8 text-primary-200">
+                  <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+                <div class="pt-6">
+                  <p class="text-body-600 italic mb-6">
+                    "El retiro de mindfulness transpersonal fue una experiencia profundamente transformadora. El equilibrio entre los momentos de silencio y los de compartir, las prácticas guiadas y el contacto con la naturaleza crearon un espacio perfecto para reconectar con mi esencia. Volví a casa sintiéndome renovada."
+                  </p>
+                  <div class="flex items-center">
+                    <img src="/images/testimonials/person4.jpg" alt="Claudia G." class="w-12 h-12 rounded-full object-cover mr-4" />
+                    <div>
+                      <h4 class="font-medium">Claudia G.</h4>
+                      <p class="text-body-500 text-sm">Participante en Retiro 2023</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-white rounded-lg shadow-md p-8 relative">
+                <div class="absolute -top-5 left-8 text-primary-200">
+                  <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+                <div class="pt-6">
+                  <p class="text-body-600 italic mb-6">
+                    "El taller sobre el duelo me dio herramientas para transitar ese difícil proceso que estaba viviendo. Descubrí que no se trata de 'superar' la pérdida, sino de integrarla con amor en mi historia. La mezcla de práctica, teoría y ritual fue muy equilibrada y sanadora."
+                  </p>
+                  <div class="flex items-center">
+                    <img src="/images/testimonials/person5.jpg" alt="Javier M." class="w-12 h-12 rounded-full object-cover mr-4" />
+                    <div>
+                      <h4 class="font-medium">Javier M.</h4>
+                      <p class="text-body-500 text-sm">Participante en taller de duelo</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>-->
+    
+        <!-- Preguntas frecuentes -->
+        <section class="py-16 md:py-20">
+          <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-heading font-medium text-center mb-16">Preguntas frecuentes</h2>
+            
+            <div class="max-w-3xl mx-auto">
+              <div class="space-y-6">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                  <button class="faq-button w-full flex justify-between items-center p-6 text-left font-heading text-lg font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset" aria-expanded="false" aria-controls="faq-1">
+                    ¿Es necesario tener experiencia previa para participar?
+                    <svg class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div id="faq-1" class="faq-answer hidden px-6 pb-6 text-body-500">
+                    <p>La mayoría de nuestros talleres están diseñados para todos los niveles, desde principiantes hasta personas con experiencia en mindfulness. Cada descripción especifica si hay algún requisito previo. Los talleres introductorios son ideales para quienes se acercan por primera vez a estas prácticas.</p>
+                  </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                  <button class="faq-button w-full flex justify-between items-center p-6 text-left font-heading text-lg font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset" aria-expanded="false" aria-controls="faq-2">
+                    ¿Cuál es la diferencia entre un taller y un retiro?
+                    <svg class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div id="faq-2" class="faq-answer hidden px-6 pb-6 text-body-500">
+                    <p>Los talleres suelen ser experiencias más cortas (de horas o un día) enfocadas en un tema específico, mientras que los retiros son inmersiones más profundas de varios días, generalmente en entornos naturales, con un programa más completo que incluye diferentes prácticas, momentos de silencio y de compartir en comunidad.</p>
+                  </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                  <button class="faq-button w-full flex justify-between items-center p-6 text-left font-heading text-lg font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset" aria-expanded="false" aria-controls="faq-3">
+                    ¿Con qué frecuencia realizan talleres y retiros?
+                    <svg class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div id="faq-3" class="faq-answer hidden px-6 pb-6 text-body-500">
+                    <p>Ofrecemos talleres aproximadamente una vez al mes y retiros trimestrales. También organizamos experiencias especiales en fechas significativas del año. La mejor manera de estar informado es suscribirte a nuestro boletín o seguirnos en redes sociales donde anunciamos todas las actividades.</p>
+                  </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                  <button class="faq-button w-full flex justify-between items-center p-6 text-left font-heading text-lg font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset" aria-expanded="false" aria-controls="faq-4">
+                    ¿Puedo solicitar un taller para mi organización o grupo?
+                    <svg class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div id="faq-4" class="faq-answer hidden px-6 pb-6 text-body-500">
+                    <p>¡Sí! Ofrecemos talleres personalizados para empresas, instituciones educativas, grupos de amigos o familias. Adaptamos el contenido y la duración según las necesidades específicas del grupo. Contáctanos para desarrollar una propuesta a medida.</p>
+                  </div>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                  <button class="faq-button w-full flex justify-between items-center p-6 text-left font-heading text-lg font-medium focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-inset" aria-expanded="false" aria-controls="faq-5">
+                    ¿Qué debo llevar a un taller o retiro?
+                    <svg class="w-6 h-6 transform transition-transform duration-300" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  <div id="faq-5" class="faq-answer hidden px-6 pb-6 text-body-500">
+                    <p>Al confirmar tu inscripción, recibirás un correo con toda la información detallada. Generalmente, recomendamos ropa cómoda, una esterilla o manta para prácticas, un cuaderno para notas, una botella de agua y, dependiendo del taller o retiro, algún objeto personal significativo para los rituales.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    
+        <!-- CTA Final -->
+        <section class="py-16 md:py-20 bg-primary-500 text-white">
+          <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl md:text-4xl font-heading font-medium mb-6">¿Listo para vivir una experiencia transformadora?</h2>
+            <p class="text-lg md:text-xl mb-10 max-w-3xl mx-auto opacity-90">
+              Contacta con nosotras para conocer nuestro calendario de talleres y retiros o solicitar información personalizada.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <button class="whatsapp-btn flex items-center justify-center bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-8 rounded-md transition-colors duration-300 ease-in-out">
+                <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+                Contactar por WhatsApp
+              </button>
+              <a href="mailto:mamapromero62@gmail.com" class="inline-flex items-center justify-center bg-white text-primary-700 font-medium py-3 px-8 rounded-md transition-colors duration-300 ease-in-out hover:bg-primary-50">
+                <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Enviar email
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+    
+      <script>
+        document.addEventListener('astro:page-load', () => {
+          // Configurar las preguntas frecuentes
+          const faqButtons = document.querySelectorAll('.faq-button');
+          
+          faqButtons.forEach(button => {
+            button.addEventListener('click', () => {
+              const isExpanded = button.getAttribute('aria-expanded') === 'true';
+              const answerId = button.getAttribute('aria-controls');
+              const answerElement = document.getElementById(answerId || '');
+              const icon = button.querySelector('svg');
+              
+              if (isExpanded) {
+                button.setAttribute('aria-expanded', 'false');
+                if (answerElement) {
+                  answerElement.classList.add('hidden');
+                  answerElement.setAttribute('aria-hidden', 'true');
+                  if (icon) icon.classList.remove('rotate-180');
+                }
+              } else {
+                button.setAttribute('aria-expanded', 'true');
+                if (answerElement) {
+                  answerElement.classList.remove('hidden');
+                  answerElement.setAttribute('aria-hidden', 'false');
+                  if (icon) icon.classList.add('rotate-180');
+                }
+              }
+            });
+          });
+        });
+      </script>
+    </Layout>

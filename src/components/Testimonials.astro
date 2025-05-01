@@ -1,0 +1,51 @@
+---
+const testimonials = [
+  {
+    quote: "Ante todo quiero agradecer de todo corazón, deseándote todas las bendiciones, para que sigan multiplicando todas estas luces, herramientas para el bien y felicidad de cada uno. Una experiencia muy valiosa para empezar a vivir el Aquí, el ahora, el momento presente. Fue una herramienta sumamente práctica me conecte conmigo misma y con mi amado Jesús.",
+    name: "Laura, Comunidad religiosa, hermanas San Jose de Tarso",
+    role: "",
+  },
+  {
+    quote: "Fue una herramienta muy necesaria e importante, tuve una experiencia muy linda que me ayuda a una mejor comprensión de mi existencia, se la recomendaría a mis amigos y personas conocidas.",
+    name: "Valentina, Comunidad religiosa, hermanas San Jose de Tarso",
+    role: "",
+  },
+  {
+    quote: "Maravillosa experiencia la vivida en este retiro, donde Magda y Pau, nos hacen habitar nuestro interior, con ese mágico fluir, encontrando incluso respuestas a preguntas que ni siquiera sabíamos que teníamos pendientes en nuestros pensamientos. Me llevo tanto de este retiro, que sin dudarlo repetiría. ¡¡Lo recomiendo!! 😊¡¡Mil gracias, Magda y Pau!! Y también a l@s compañeros del retiro, por todo lo compartido🙏❤️🥰🤗",
+    name: "Amy Schneider",
+    role: "Retiro, Experiencias Sanadoras para vivir en Un Amor Consciente 2022",
+  }
+];
+---
+
+<section class="py-16 md:py-24">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-heading font-medium text-center mb-4">Lo que dicen de nosotros</h2>
+    <p class="text-center text-body-500 max-w-3xl mx-auto mb-16">Experiencias de quienes ya han recorrido este camino</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {testimonials.map((testimonial) => (
+        <div class="bg-white rounded-lg shadow-lg p-8 relative">
+          <!-- Comillas decorativas -->
+          <div class="absolute top-4 left-4 text-primary-100">
+            <svg class="w-12 h-12" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+            </svg>
+          </div>
+          
+          <div class="text-body-600 italic mb-6 pt-6">
+            {testimonial.quote}
+          </div>
+          
+          <div class="flex items-center">
+            
+            <div>
+              <h4 class="font-heading font-medium">{testimonial.name}</h4>
+              <p class="text-body-500 text-sm">{testimonial.role}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

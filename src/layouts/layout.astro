@@ -1,0 +1,119 @@
+---
+// SEO props
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title = "Un Amor Consciente | Mindfulness momento a momento",
+  description = "Acompañamos procesos personales desde el mindfulness transpersonal, la autoindagación y el amor profundo por la vida. Encuentra calma, conexión y bienestar emocional.",
+  image = "/images/og-image.jpg",
+  canonicalURL = Astro.url.href,
+} = Astro.props;
+
+import { ViewTransitions } from 'astro:transitions';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={new URL(image, Astro.site)} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={new URL(image, Astro.site)} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured data / JSON-LD -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Un Amor Consciente",
+        "description": "Acompañamiento desde el mindfulness transpersonal, programas de 21 días, talleres y retiros.",
+        "url": "https://unamorconsciente.com",
+        "logo": "https://unamorconsciente.com/images/logo.png",
+        "foundingDate": "2019",
+        "founders": [
+          {
+            "@type": "Person",
+            "name": "Maria Magdalena Peña Romero"
+          }
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+573045538216",
+          "email": "mamapromero62@gmail.com",
+          "contactType": "Customer Support"
+        }
+      }
+    </script>
+    
+    <!-- View Transitions for Astro -->
+    <ViewTransitions />
+  </head>
+  <body class="bg-white font-body text-body-600">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:p-4 focus:bg-primary-500 focus:text-white focus:z-50">
+      Saltar al contenido principal
+    </a>
+    
+    <Header />
+    
+    <main id="main-content">
+      <slot />
+    </main>
+    
+    <Footer />
+    
+
+    <!-- Script para WhatsApp -->
+    <script>
+      // Función para abrir WhatsApp con mensaje predeterminado
+      function openWhatsApp() {
+        const phone = "573045538216";
+        const message = "Hola, estoy interesad@ en conocer más sobre Un Amor Consciente.";
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
+      }
+      
+      // Asignar la función a todos los botones de WhatsApp
+      document.addEventListener('astro:page-load', () => {
+        document.querySelectorAll('.whatsapp-btn').forEach(button => {
+          button.addEventListener('click', openWhatsApp);
+        });
+      });
+    </script>
+    
+  </body>
+</html>

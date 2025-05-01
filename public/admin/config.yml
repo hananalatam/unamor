@@ -1,0 +1,34 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/blog" # Donde se guardarán las imágenes subidas
+public_folder: "/images/blog" # URL pública para las imágenes
+
+collections:
+  - name: "blog" # Nombre de la colección en Netlify CMS
+    label: "Blog" # Nombre visible en el CMS
+    folder: "src/content/blog" # Carpeta donde se guardarán los archivos
+    create: true # Permitir crear nuevos artículos
+    slug: "{{slug}}" # Formato del slug
+    fields: # Campos que se mostrarán en el formulario
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Descripción", name: "description", widget: "string"}
+      - {label: "Fecha de publicación", name: "pubDate", widget: "datetime"}
+      - {label: "Imagen principal", name: "heroImage", widget: "image", required: false}
+      - {label: "Autor", name: "author", widget: "select", options: ["Maria Magdalena Peña Romero", "Paula Prieto Peña"], default: "Maria Magdalena Peña Romero"}
+      - {label: "Imagen del autor", name: "authorImage", widget: "string", default: "/images/founder-magdalena.jpg"}
+      - {label: "Categoría", name: "category", widget: "select", options: ["Mindfulness", "Relaciones", "Sanación Emocional", "Bienestar", "Espiritualidad"]}
+      - {label: "Destacado", name: "featured", widget: "boolean", default: false}
+      - {label: "Etiquetas", name: "tags", widget: "list"}
+      - {label: "Tiempo de lectura (minutos)", name: "minutesRead", widget: "number", default: 5, value_type: "int"}
+      - {label: "Contenido", name: "body", widget: "markdown"}
+      # Widget de imágenes adicionales
+      - label: "Imágenes adicionales"
+        name: "extraImages"
+        widget: "list"
+        required: false
+        summary: "Imagen {{fields.caption}}"
+        fields:
+          - {label: "Imagen", name: "image", widget: "image"}
+          - {label: "Descripción", name: "caption", widget: "string"}

@@ -1,0 +1,77 @@
+---
+import { getCollection } from 'astro:content';
+
+// Obtener todas las categorías para el menú desplegable
+const allBlogPosts = await getCollection('blog', ({ data }: { data: any }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+// Extraer categorías únicas y ordenarlas
+const categories = [...new Set(allBlogPosts.map((post: any) => post.data.category))].sort();
+
+// Determinar la ruta actual para resaltar los enlaces activos
+const currentPath = Astro.url.pathname;
+const isBlogActive = currentPath.includes('/blog');
+---
+
+<li class="relative group">
+  <a 
+    href="/blog" 
+    class={`relative text-base font-medium transition-colors duration-300 hover:text-primary-500 ${
+      isBlogActive 
+        ? "text-primary-500 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary-500" 
+        : "text-body-600"
+    }`}
+    aria-current={isBlogActive ? "page" : undefined}
+  >
+    Blog
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      class="inline-block w-4 h-4 ml-1" 
+      fill="none" 
+      viewBox="0 0 24 24" 
+      stroke="currentColor"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+    </svg>
+  </a>
+  
+  <!-- Menú desplegable -->
+  <div class="absolute left-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out z-50">
+    <div class="py-1" role="menu" aria-orientation="vertical">
+      <a 
+        href="/blog" 
+        class="block px-4 py-2 text-sm text-body-700 hover:bg-primary-50 hover:text-primary-700" 
+        role="menuitem"
+      >
+        Todos los artículos
+      </a>
+      
+      <div class="border-t border-gray-100 my-1"></div>
+      
+      <div class="px-4 py-2 text-xs font-semibold text-body-500">
+        Categorías
+      </div>
+      
+      {categories.map((category) => (
+        <a 
+          href={`/blog/categoria/${(category as string).toLowerCase().replace(/ /g, '-')}`} 
+          class="block px-4 py-2 text-sm text-body-700 hover:bg-primary-50 hover:text-primary-700" 
+          role="menuitem"
+        >
+          {category as string}
+        </a>
+      ))}
+      
+      <div class="border-t border-gray-100 my-1"></div>
+      
+      <a 
+        href="/blog#newsletter" 
+        class="block px-4 py-2 text-sm text-body-700 hover:bg-primary-50 hover:text-primary-700" 
+        role="menuitem"
+      >
+        Suscribirse al boletín
+      </a>
+    </div>
+  </div>
+</li>

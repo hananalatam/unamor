@@ -1,0 +1,96 @@
+---
+// Importar lo necesario de Astro
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+// Definir las props que recibirá el componente
+interface Props {
+  article: CollectionEntry<'blog'>;
+  isFeature?: boolean;
+}
+
+// Destructurar las props
+const { article, isFeature = false } = Astro.props;
+const { title, description, pubDate, heroImage, category, minutesRead, author, authorImage } = article.data;
+
+// Formatear la fecha
+const formattedDate = new Intl.DateTimeFormat('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+}).format(pubDate);
+
+// Crear la URL del artículo
+const articleUrl = `/blog/${article.slug}`;
+---
+
+<article class={`group overflow-hidden rounded-lg shadow-md transition-all duration-300 hover:shadow-lg ${isFeature ? 'lg:col-span-2 lg:grid lg:grid-cols-2 lg:items-center' : ''}`}>
+  <a href={articleUrl} class="block overflow-hidden">
+    <div class={`relative overflow-hidden ${isFeature ? 'aspect-[16/10] lg:h-full' : 'aspect-[16/9]'}`}>
+      <img
+        src={heroImage || '/images/blog/default-hero.jpg'}
+        alt={`Imagen para ${title}`}
+        class="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
+        width={800}
+        height={isFeature ? 500 : 450}
+        loading="lazy"
+      />
+      <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4 lg:p-6 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+        <span class="font-medium">{description}</span>
+      </div>
+    </div>
+  </a>
+  
+  <div class="p-6">
+    <!-- Categoría -->
+    <a
+      href={`/blog/categoria/${category.toLowerCase().replace(/ /g, '-')}`}
+      class="mb-2 inline-block rounded-full bg-primary-100 px-3 py-1 text-xs font-medium text-primary-700 transition-colors hover:bg-primary-200"
+    >
+      {category}
+    </a>
+    
+    <!-- Título -->
+    <h3 class="mb-3 font-heading text-xl font-medium leading-tight transition-colors group-hover:text-primary-600 md:text-2xl">
+      <a href={articleUrl}>
+        {title}
+      </a>
+    </h3>
+    
+    <!-- Descripción (sólo visible si no es feature o en móvil si es feature) -->
+    <p class={`mb-4 text-body-500 ${isFeature ? 'lg:hidden' : ''}`}>
+      {description}
+    </p>
+    
+    <!-- Metadatos -->
+    <div class="flex items-center justify-between">
+      <!-- Autor y fecha -->
+      <div class="flex items-center">
+        {authorImage && (
+          <img 
+            src={authorImage} 
+            alt={author}
+            class="mr-3 h-8 w-8 rounded-full object-cover"
+            width={32}
+            height={32}
+            loading="lazy"
+          />
+        )}
+        <div>
+          <p class="text-sm font-medium">{author}</p>
+          <p class="text-xs text-body-500">{formattedDate}</p>
+        </div>
+      </div>
+      
+      <!-- Tiempo de lectura -->
+      {minutesRead && (
+        <span class="flex items-center text-xs text-body-500">
+          <svg xmlns="http://www.w3.org/2000/svg" class="mr-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          {minutesRead} min
+        </span>
+      )}
+    </div>
+  </div>
+</article>

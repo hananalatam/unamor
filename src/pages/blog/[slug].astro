@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPostLayout from '../../layouts/BlogPostLayout.astro';
+import ArticleCard from '../../components/blog/ArticleCard.astro';
+
+// Generamos las rutas estáticas para cada artículo del blog
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('blog', ({ data }: { data: any }) => {
+    return import.meta.env.PROD ? !data.draft : true;
+  });
+  
+  return blogEntries.map((entry: any) => ({
+  params: { slug: entry.slug },
+  props: { entry },
+}));
+}
+
+// Props del artículo actual
+const { entry } = Astro.props;
+const { Content } = await (entry as any).render();
+
+// Obtener artículos relacionados (misma categoría)
+const allPosts = await getCollection('blog', ({ data }: { data: any }) => {
+  return import.meta.env.PROD ? !data.draft : true;
+});
+
+// Excluir el artículo actual y filtrar por la misma categoría
+const relatedPosts = allPosts
+  .filter((post: any) => post.slug !== (entry as any).slug && post.data.category === (entry as any).data.category)
+  .sort((a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BlogPostLayout post={entry}>
+  <Content />
+  
+  <!-- Artículos relacionados -->
+  {relatedPosts.length > 0 && (
+    <div class="related-posts mt-16 border-t border-gray-200 pt-10">
+      <h2 class="mb-8 font-heading text-2xl font-medium">Artículos relacionados</h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {relatedPosts.map((post: any) => (
+  <ArticleCard article={post} />
+))}
+      </div>
+    </div>
+  )}
+</BlogPostLayout>

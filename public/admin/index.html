@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Un Amor Consciente - Panel de Administración</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+  <!-- Incluir el script de Netlify CMS -->
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  
+  <script>
+    // Habilitar el widget de vista previa para imágenes múltiples
+    CMS.registerPreviewStyle(`
+      .additional-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+      .image-item {
+        width: 300px;
+      }
+      .image-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 0.5rem;
+      }
+      .image-caption {
+        margin-top: 0.5rem;
+        font-style: italic;
+        font-size: 0.875rem;
+      }
+    `);
+    
+    // Redireccionar después de un inicio de sesión exitoso
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
