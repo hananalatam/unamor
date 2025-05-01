@@ -4,46 +4,93 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Un Amor Consciente - Panel de Administración</title>
+  <!-- Script de Netlify Identity Widget -->
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+      color: #666;
+    }
+    .loading img {
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
+    .loading p {
+      font-size: 16px;
+    }
+  </style>
 </head>
 <body>
+  <!-- Pantalla de carga mientras se inicializa el CMS -->
+  <div class="loading" id="loading-screen">
+    <img src="/images/unamorconsciente.svg" alt="Un Amor Consciente" />
+    <p>Cargando panel de administración...</p>
+  </div>
+
   <!-- Incluir el script de Netlify CMS -->
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   
   <script>
-    // Habilitar el widget de vista previa para imágenes múltiples
-    CMS.registerPreviewStyle(`
-      .additional-images {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 2rem;
-      }
-      .image-item {
-        width: 300px;
-      }
-      .image-item img {
-        width: 100%;
-        height: auto;
-        border-radius: 0.5rem;
-      }
-      .image-caption {
-        margin-top: 0.5rem;
-        font-style: italic;
-        font-size: 0.875rem;
-      }
-    `);
-    
-    // Redireccionar después de un inicio de sesión exitoso
+    // Manejo mejorado de confirmación de tokens
     if (window.netlifyIdentity) {
+      // Procesar tokens de confirmación
       window.netlifyIdentity.on("init", user => {
+        // Si hay un token de confirmación en la URL, procesarlo
+        const hash = window.location.hash;
+        if (hash && hash.includes('confirmation_token=')) {
+          try {
+            const token = hash.split('confirmation_token=')[1];
+            console.log("Procesando token de confirmación:", token);
+            window.netlifyIdentity.confirm(token, true);
+          } catch(e) {
+            console.error("Error procesando token:", e);
+          }
+        }
+        
+        // Gestión de login/logout
         if (!user) {
+          console.log("Usuario no autenticado, mostrando widget de inicio de sesión");
           window.netlifyIdentity.on("login", () => {
             document.location.href = "/admin/";
           });
+          // Mostrar el widget de inicio de sesión automáticamente
+          setTimeout(() => {
+            window.netlifyIdentity.open();
+          }, 500);
+        } else {
+          console.log("Usuario ya autenticado:", user.email);
         }
       });
+      
+      // Redireccionar después de cerrar sesión
+      window.netlifyIdentity.on("logout", () => {
+        document.location.href = "/";
+      });
+      
+      // Redireccionar tras confirmación de correo
+      window.netlifyIdentity.on("email_confirmed", () => {
+        console.log("Correo confirmado, redirigiendo...");
+        document.location.href = "/admin/";
+      });
     }
+    
+    // Ocultar la pantalla de carga cuando el CMS esté listo
+    window.addEventListener('DOMContentLoaded', () => {
+      // Esperar un poco más para asegurarse de que el CMS esté cargado
+      setTimeout(() => {
+        document.getElementById('loading-screen').style.display = 'none';
+      }, 2000);
+    });
   </script>
 </body>
 </html>
