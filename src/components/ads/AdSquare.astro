@@ -1,0 +1,41 @@
+---
+// Componente para anuncios cuadrados o rectangulares
+---
+
+<div class="ad-square-container my-6 text-center overflow-hidden">
+    <!-- Anuncio cuadrado o rectangular -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"
+         data-ad-format="rectangle"></ins>
+    <script>
+(window.adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div>
+  
+  <style>
+    .ad-square-container {
+      min-height: 250px;
+      background-color: #f9f9f9;
+      border-radius: 0.5rem;
+      margin: 1.5rem auto;
+      overflow: hidden;
+      max-width: 336px;
+      position: relative;
+    }
+    
+    /* Marca de "Publicidad" para mejorar UX */
+    .ad-square-container::before {
+      content: "Publicidad";
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.05);
+      color: #999;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-bottom-left-radius: 4px;
+      z-index: 1;
+    }
+  </style>

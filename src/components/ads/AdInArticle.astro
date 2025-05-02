@@ -1,0 +1,42 @@
+---
+// Componente específico para anuncios dentro de artículos
+---
+
+<div class="ad-in-article-container my-8 text-center overflow-hidden">
+    <!-- Anuncio dentro del artículo -->
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
+         data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+         data-ad-slot="XXXXXXXXXX"></ins>
+    <script>
+(window.adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+  </div>
+  
+  <style>
+    .ad-in-article-container {
+      min-height: 100px;
+      background-color: #f9f9f9;
+      border-radius: 0.5rem;
+      margin: 2.5rem 0;
+      padding: 1rem 0;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    /* Marca de "Publicidad" para mejorar UX */
+    .ad-in-article-container::before {
+      content: "Publicidad";
+      position: absolute;
+      top: 0;
+      right: 0;
+      background-color: rgba(0,0,0,0.05);
+      color: #999;
+      font-size: 10px;
+      padding: 2px 6px;
+      border-bottom-left-radius: 4px;
+      z-index: 1;
+    }
+  </style>
