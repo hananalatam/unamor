@@ -662,6 +662,96 @@ const updatedDate = entry.data.updatedDate ? formatDate(entry.data.updatedDate) 
       margin-top: 0.1em;
       color: theme('colors.primary.600');
     }
+    
+    /* Estilos para imágenes insertas con el widget personalizado */
+    & .article-image {
+      margin: 2rem 0;
+      position: relative;
+      clear: both;
+      overflow: hidden;
+
+      & img {
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        display: block;
+        transition: transform 0.3s ease;
+        
+        &:hover {
+          transform: scale(1.02);
+        }
+      }
+      
+      & figcaption {
+        font-style: italic;
+        font-size: 0.875rem;
+        color: theme('colors.body.500');
+        margin-top: 0.5rem;
+        text-align: center;
+      }
+    }
+    
+    /* Posicionamiento de imágenes en escritorio */
+    @media (min-width: 768px) {
+      & .article-image.left {
+        float: left;
+        margin-right: 2rem;
+        margin-left: 0;
+        width: 50%;
+        
+        & figcaption {
+          text-align: left;
+        }
+      }
+      
+      & .article-image.right {
+        float: right;
+        margin-left: 2rem;
+        margin-right: 0;
+        width: 50%;
+        
+        & figcaption {
+          text-align: right;
+        }
+      }
+      
+      & .article-image.full {
+        float: none;
+        width: 100%;
+        margin: 2.5rem auto;
+      }
+    }
+    
+    /* Posicionamiento de imágenes en móvil */
+    @media (max-width: 767px) {
+      & .article-image {
+        float: none;
+        width: 100%;
+        margin: 2rem auto;
+        
+        & img {
+          width: 100%;
+        }
+      }
+    }
+    
+    /* Estilos para texto destacado */
+    & .featured-text {
+      background-color: theme('colors.secondary.50');
+      padding: 1.5rem;
+      border-radius: 0.5rem;
+      border-left: 4px solid theme('colors.primary.500');
+      margin: 2rem 0;
+      
+      & h4 {
+        margin-top: 0;
+        color: theme('colors.primary.700');
+        font-family: var(--font-heading);
+      }
+      
+      & p:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
   
   /* Back to top button */

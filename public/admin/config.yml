@@ -5,43 +5,88 @@ backend:
 media_folder: "public/images/blog" # Donde se guardarán las imágenes subidas
 public_folder: "/images/blog" # URL pública para las imágenes
 
+# Configuración del panel de administración
+site_url: https://unamorconsciente.netlify.app
+display_url: https://unamorconsciente.netlify.app
+logo_url: https://unamorconsciente.netlify.app/images/unamorconsciente.svg
+
+# Mensaje de ayuda que aparecerá en el panel
+editor:
+  preview: true
+  
+# Plantillas de colecciones
 collections:
   - name: "blog" # Nombre de la colección en Netlify CMS
     label: "Blog" # Nombre visible en el CMS
     folder: "src/content/blog" # Carpeta donde se guardarán los archivos
     create: true # Permitir crear nuevos artículos
-    slug: "{{slug}}" # Formato del slug
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Formato del slug
+    summary: "{{title}} - {{author}} ({{day}}/{{month}}/{{year}})" # Formato de resumen en la lista
+    editor:
+      preview: true
     fields: # Campos que se mostrarán en el formulario
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Descripción", name: "description", widget: "string"}
-      - {label: "Fecha de publicación", name: "pubDate", widget: "datetime"}
-      - {label: "Fecha de actualización", name: "updatedDate", widget: "datetime", required: false}
-      - {label: "Imagen principal", name: "heroImage", widget: "image", required: false}
-      - {label: "Autor", name: "author", widget: "select", options: ["Maria Magdalena Peña Romero", "Paula Prieto Peña"], default: "Maria Magdalena Peña Romero"}
-      - {label: "Imagen del autor", name: "authorImage", widget: "string", default: "/images/founder-magdalena.jpg"}
-      - {label: "Categoría", name: "category", widget: "select", options: ["Mindfulness", "Relaciones", "Sanación Emocional", "Bienestar", "Espiritualidad"]}
-      - {label: "Destacado", name: "featured", widget: "boolean", default: false}
-      - {label: "Borrador", name: "draft", widget: "boolean", default: false}
-      - {label: "Etiquetas", name: "tags", widget: "list"}
-      - {label: "Tiempo de lectura (minutos)", name: "minutesRead", widget: "number", default: 5, value_type: "int"}
-      - {label: "Contenido", name: "body", widget: "markdown"}
+      - {label: "⭐ Guía de uso", name: "guide", widget: "markdown", required: false, minimal: true, buttons: [], editable: false, default: "### Cómo insertar imágenes en el texto\n\n1. Escribe tu texto normalmente\n2. Cuando quieras insertar una imagen, haz clic en el botón '+' en la barra de herramientas\n3. Selecciona 'Imagen en artículo'\n4. Sube la imagen y selecciona su posición (izquierda, derecha o completa)\n5. ¡Listo! La imagen aparecerá en el texto"}
+      
+      - {label: "Título", name: "title", widget: "string", hint: "Título del artículo (70 caracteres máx. recomendado)"}
+      - {label: "Descripción", name: "description", widget: "text", hint: "Breve resumen del artículo (150-160 caracteres recomendado)"}
+      - {label: "Fecha de publicación", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false}
+      - {label: "Fecha de actualización", name: "updatedDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, required: false}
+      
+      - label: "Imagen principal"
+        name: "heroImage"
+        widget: "image"
+        required: true
+        media_library:
+          config:
+            multiple: false
+        hint: "Esta imagen aparecerá grande al inicio del artículo"
+        
+      - label: "Autor"
+        name: "author"
+        widget: "select"
+        options: ["Maria Magdalena Peña Romero", "Paula Prieto Peña"]
+        default: "Maria Magdalena Peña Romero"
+        
+      - label: "Imagen del autor"
+        name: "authorImage"
+        widget: "string"
+        default: "/images/founder-magdalena.jpg"
+        options:
+          - {label: "María Magdalena", value: "/images/founder-magdalena.jpg"}
+          - {label: "Paula", value: "/images/founder-paula.jpg"}
+        hint: "Selecciona la imagen correspondiente al autor"
+        
+      - label: "Categoría"
+        name: "category"
+        widget: "select"
+        options: ["Mindfulness", "Relaciones", "Sanación Emocional", "Bienestar", "Espiritualidad"]
+        
+      - {label: "Destacado", name: "featured", widget: "boolean", default: false, hint: "Marca para mostrar este artículo en posición destacada"}
+      - {label: "Borrador", name: "draft", widget: "boolean", default: false, hint: "Marca si no quieres que se publique aún"}
+      
+      - label: "Etiquetas"
+        name: "tags"
+        widget: "list"
+        hint: "Añade etiquetas relacionadas con el contenido"
+        min: 1
+        max: 5
+        
+      - {label: "Tiempo de lectura (minutos)", name: "minutesRead", widget: "number", default: 5, value_type: "int", min: 1, max: 30}
+      
+      - label: "Contenido"
+        name: "body"
+        widget: "markdown"
+        hint: "Aquí va el texto del artículo. Usa los botones de la barra de herramientas para añadir imágenes, citas destacadas, etc."
+        editor_components: ["easy-image", "feature-text", "quote", "image", "code-block"]
+        buttons: ["bold", "italic", "link", "heading-two", "heading-three", "heading-four", "bulleted-list", "numbered-list"]
+        
       # Widget de imágenes adicionales
-      - label: "Imágenes adicionales"
+      - label: "Galería de imágenes (opcional)"
         name: "extraImages"
         widget: "list"
         required: false
-        summary: "Imagen {{fields.caption}}"
+        summary: "Imagen: {{fields.caption}}"
+        hint: "Añade imágenes adicionales para mostrar en una galería al final del artículo"
         fields:
           - {label: "Imagen", name: "image", widget: "image"}
           - {label: "Descripción", name: "caption", widget: "string"}
-      # Campos para SEO
-      - label: "SEO"
-        name: "seo"
-        widget: "object"
-        required: false
-        collapsed: true
-        fields:
-          - {label: "Título SEO (opcional)", name: "title", widget: "string", required: false}
-          - {label: "Descripción SEO (opcional)", name: "description", widget: "string", required: false}
-          - {label: "Imagen SEO", name: "image", widget: "image", required: false}
-          - {label: "Palabras clave", name: "keywords", widget: "list", required: false}
