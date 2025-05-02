@@ -6,20 +6,11 @@
   command = "npm run dev"
   framework = "astro"
 
-# Redirección para procesar los tokens de confirmación
 [[redirects]]
-  from = "/#confirmation_token=*"
-  to = "/confirm/"
-  status = 302
-  force = true
+  from = "/.netlify/identity/*"
+  to = "/.netlify/identity/:splat"
+  status = 200
 
-[[redirects]]
-  from = "/?confirmation_token=*"
-  to = "/confirm/"
-  status = 302
-  force = true
-
-# Redirección para el resto de las páginas
 [[redirects]]
   from = "/*"
   to = "/index.html"

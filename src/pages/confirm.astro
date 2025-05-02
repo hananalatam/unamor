@@ -1,0 +1,34 @@
+
+<html lang="es">
+  <head>
+    <title>Confirmando tu correo…</title>
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  </head>
+  <body>
+    <h1>Confirmando tu correo electrónico…</h1>
+    <script type="module">
+      // Esperar a que se cargue Netlify Identity
+      window.netlifyIdentity = window.netlifyIdentity || {};
+      netlifyIdentity.on('init', () => {
+        const params = new URLSearchParams(window.location.hash.slice(1));
+        const token = params.get('confirmation_token');
+        if (token) {
+          netlifyIdentity.confirm(token, true)
+            .then((user) => {
+              console.log('✅ Usuario confirmado:', user);
+              window.location.replace('/dashboard/');
+            })
+            .catch((err) => {
+              console.error('❌ Error confirmando usuario:', err);
+              alert("Error al confirmar tu cuenta.");
+              window.location.replace('/');
+            });
+        } else {
+          alert("No se encontró el token de confirmación.");
+          window.location.replace('/');
+        }
+      });
+      netlifyIdentity.init();
+    </script>
+  </body>
+</html>
