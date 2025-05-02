@@ -2,12 +2,12 @@
 // Importar el componente de navegación del blog
 import BlogNavigation from '../pages/blog/BlogNavigation.astro';
 
-// Definir las rutas de navegación principales
+// Definir las rutas de navegación principales con secciones en lugar de páginas separadas
 const navItems = [
-  { href: "/", text: "Inicio" },
-  { href: "#nosotros", text: "Nosotros" },
-  { href: "#servicios", text: "Servicios" },
-  { href: "#contacto", text: "Contacto" },
+  { href: "/#inicio", text: "Inicio" },
+  { href: "/#nosotros", text: "Nosotros" },
+  { href: "/#servicios", text: "Servicios" },
+  { href: "/#contacto", text: "Contacto" },
 ];
 
 // Determinar la ruta actual para resaltar el enlace activo
@@ -34,11 +34,15 @@ const currentPath = Astro.url.pathname;
               <a 
                 href={item.href} 
                 class={`relative text-base font-medium transition-colors duration-300 hover:text-primary-500 ${
-                  currentPath === item.href 
+                  (currentPath === '/' && item.href.includes('#')) || (currentPath + '#' + item.href.split('#')[1] === item.href)
                     ? "text-primary-500 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary-500" 
                     : "text-body-600"
                 }`}
-                aria-current={currentPath === item.href ? "page" : undefined}
+                aria-current={
+                  (currentPath === '/' && item.href.includes('#')) || (currentPath + '#' + item.href.split('#')[1] === item.href)
+                    ? "page" 
+                    : undefined
+                }
               >
                 {item.text}
               </a>
@@ -63,7 +67,7 @@ const currentPath = Astro.url.pathname;
     </nav>
     
     <script>
-      // Script para el menú móvil
+      // Script para el menú móvil y navegación suave
       document.addEventListener('astro:page-load', () => {
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -109,5 +113,33 @@ const currentPath = Astro.url.pathname;
             });
           });
         }
+        
+        // Smooth scroll para navegación entre secciones
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            const anchorElement = e.currentTarget as HTMLAnchorElement;
+            const href = anchorElement.getAttribute('href');
+            
+            if (!href) return;
+            
+            const targetId = href.substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+              window.scrollTo({
+                top: targetElement.offsetTop - 80, // Ajustar offset según sea necesario
+                behavior: 'smooth'
+              });
+              
+              // Actualizar la URL sin recargar la página
+              history.pushState(null, '', `#${targetId}`);
+            } else if (href.includes('#')) {
+              // Si estamos en otra página y necesitamos ir a una sección de la página principal
+              window.location.href = href;
+            }
+          });
+        });
       });
     </script>

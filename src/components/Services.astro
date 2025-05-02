@@ -1,6 +1,7 @@
 ---
 const services = [
   {
+    id: "mindfulness",
     title: "Acompañamiento desde el mindfulness transpersonal",
     description: "Un espacio para calmar la mente, sanar emociones y reconectar con lo esencial.",
     icon: "meditation",
@@ -8,6 +9,7 @@ const services = [
     url: "/servicios/mindfulness-transpersonal"
   },
   {
+    id: "programas",
     title: "Programas de 21 días",
     description: "Propuestas prácticas y amorosas para cultivar hábitos conscientes, descubrir tu propósito, sanar vínculos y vivir con más presencia.",
     icon: "calendar",
@@ -15,6 +17,7 @@ const services = [
     url: "/servicios#programas"
   },
   {
+    id: "talleres",
     title: "Talleres y retiros",
     description: "Encuentros profundos donde unimos presencia, consciencia y amor para reconectar con lo sagrado en lo cotidiano.",
     icon: "group",
@@ -31,7 +34,7 @@ const services = [
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {services.map((service) => (
-        <div class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
+        <div id={service.id} class="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:-translate-y-2">
           <div class="aspect-[16/9] relative overflow-hidden">
             <img 
               src={service.image} 
@@ -55,15 +58,5 @@ const services = [
         </div>
       ))}
     </div>
-        <!-- Overlay para mejorar legibilidad del texto 
-    <div class="text-center mt-12">
-      <a href="/servicios" class="inline-flex items-center bg-primary-500 hover:bg-primary-600 text-white font-medium py-3 px-6 rounded-md transition-colors duration-300 ease-in-out">
-        Ver todos nuestros servicios
-        <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-        </svg>
-      </a>
-    </div>-->
-
   </div>
 </section>
