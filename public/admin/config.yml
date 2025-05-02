@@ -15,6 +15,7 @@ collections:
       - {label: "Título", name: "title", widget: "string"}
       - {label: "Descripción", name: "description", widget: "string"}
       - {label: "Fecha de publicación", name: "pubDate", widget: "datetime"}
+      - {label: "Fecha de actualización", name: "updatedDate", widget: "datetime", required: false}
       - {label: "Imagen principal", name: "heroImage", widget: "image", required: false}
       - {label: "Autor", name: "author", widget: "select", options: ["Maria Magdalena Peña Romero", "Paula Prieto Peña"], default: "Maria Magdalena Peña Romero"}
       - {label: "Imagen del autor", name: "authorImage", widget: "string", default: "/images/founder-magdalena.jpg"}
@@ -33,3 +34,14 @@ collections:
         fields:
           - {label: "Imagen", name: "image", widget: "image"}
           - {label: "Descripción", name: "caption", widget: "string"}
+      # Campos para SEO
+      - label: "SEO"
+        name: "seo"
+        widget: "object"
+        required: false
+        collapsed: true
+        fields:
+          - {label: "Título SEO (opcional)", name: "title", widget: "string", required: false}
+          - {label: "Descripción SEO (opcional)", name: "description", widget: "string", required: false}
+          - {label: "Imagen SEO", name: "image", widget: "image", required: false}
+          - {label: "Palabras clave", name: "keywords", widget: "list", required: false}

@@ -1,0 +1,136 @@
+---
+// TableOfContents.astro
+// Genera automáticamente una tabla de contenidos basada en los encabezados del artículo
+---
+
+<div class="table-of-contents" id="table-of-contents">
+    <ul class="toc-list space-y-2 text-body-600"></ul>
+  </div>
+  
+  <script>
+    document.addEventListener('astro:page-load', () => {
+      const articleContent = document.querySelector('.magazine-style-content');
+      const tocList = document.querySelector('.toc-list');
+      
+      if (!articleContent || !tocList) return;
+      
+      // Seleccionar los encabezados h2 y h3
+      const headings = articleContent.querySelectorAll('h2, h3');
+      
+      if (headings.length === 0) {
+        // Si no hay encabezados, ocultar la tabla de contenidos
+        const tocContainer = document.getElementById('table-of-contents');
+        if (tocContainer) {
+          tocContainer.parentElement?.classList.add('hidden');
+        }
+        return;
+      }
+      
+      // Limpiar la lista actual
+      tocList.innerHTML = '';
+      
+      // Generar la tabla de contenidos
+      headings.forEach((heading) => {
+        if (!heading.id) return;
+        
+        const listItem = document.createElement('li');
+        
+        // Determinar el nivel de indentación basado en el tipo de encabezado
+        if (heading.tagName === 'H3') {
+          listItem.classList.add('ml-4');
+        }
+        
+        const link = document.createElement('a');
+        link.href = `#${heading.id}`;
+        link.textContent = heading.textContent || '';
+        link.classList.add('hover:text-primary-600', 'transition-colors', 'duration-200', 'ease-in-out', 'flex', 'items-start');
+        
+        // Añadir un ícono solo para los títulos H2
+        if (heading.tagName === 'H2') {
+          const icon = document.createElement('span');
+          icon.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-1 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          `;
+          link.prepend(icon);
+        } else {
+          // Para H3, agregar margen para alinear con el texto de H2
+          const spacer = document.createElement('span');
+          spacer.classList.add('w-6', 'inline-block');
+          link.prepend(spacer);
+        }
+        
+        // Implementar un smooth scroll al hacer clic en un enlace
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          const targetId = link.getAttribute('href')?.substring(1);
+          const targetElement = document.getElementById(targetId || '');
+          
+          if (targetElement) {
+            // Añadir un highlight temporal al encabezado de destino
+            targetElement.classList.add('highlight-heading');
+            
+            // Desplazamiento suave
+            window.scrollTo({
+              top: targetElement.offsetTop - 100, // Ajustar el offset según sea necesario
+              behavior: 'smooth'
+            });
+            
+            // Eliminar el highlight después de un tiempo
+            setTimeout(() => {
+              targetElement.classList.remove('highlight-heading');
+            }, 2000);
+          }
+        });
+        
+        listItem.appendChild(link);
+        tocList.appendChild(listItem);
+      });
+    });
+  </script>
+  
+  <style is:global>
+    /* Estilos para la tabla de contenidos */
+    .table-of-contents {
+      position: relative;
+    }
+    
+    .table-of-contents:before {
+      content: "";
+      position: absolute;
+      left: 6px;
+      top: 2px;
+      bottom: 2px;
+      width: 2px;
+      background-color: theme('colors.primary.100');
+      z-index: 0;
+    }
+    
+    .toc-list a {
+      display: block;
+      padding: 0.25rem 0;
+      position: relative;
+      z-index: 1;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    /* Estilo para el highlight temporal */
+    .highlight-heading {
+      animation: highlight-pulse 2s ease-out;
+    }
+    
+    @keyframes highlight-pulse {
+      0% {
+        background-color: transparent;
+      }
+      25% {
+        background-color: theme('colors.primary.100');
+      }
+      100% {
+        background-color: transparent;
+      }
+    }
+  </style>
