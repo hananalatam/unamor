@@ -6,6 +6,7 @@
   command = "npm run dev"
   framework = "astro"
 
+
 [[redirects]]
   from = "/.netlify/identity/*"
   to = "/.netlify/identity/:splat"
