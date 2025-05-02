@@ -1,5 +1,5 @@
 ---
-title: "El camino del duelo consciente: Atravesar la pérdida con presencia"
+title: El camino nuevo del mindfulness
 description: Cómo el mindfulness puede acompañarte en los procesos de duelo,
   ofreciendo un espacio para honrar el dolor y encontrar sanación en la pérdida.
 pubDate: 2024-01-20
