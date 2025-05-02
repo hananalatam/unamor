@@ -3,9 +3,10 @@ title: El camino nuevo del mindfulness
 description: Cómo el mindfulness puede acompañarte en los procesos de duelo,
   ofreciendo un espacio para honrar el dolor y encontrar sanación en la pérdida.
 pubDate: 2024-01-20
+updatedDate: 2025-05-02T03:33:55.915Z
 heroImage: /images/blog/unamorconsciente.jpg
 author: Maria Magdalena Peña Romero
-authorImage: /images/founder.jpg
+authorImage: /images/founder-magdalena.jpg
 category: Sanación Emocional
 featured: true
 draft: false
