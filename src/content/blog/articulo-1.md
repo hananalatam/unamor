@@ -8,7 +8,7 @@ heroImage: /images/blog/unamorconsciente.jpg
 author: Maria Magdalena Peña Romero
 authorImage: /images/founder-magdalena.jpg
 category: Sanación Emocional
-featured: true
+featured: false
 draft: false
 tags:
   - duelo
