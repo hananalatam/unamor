@@ -11,7 +11,7 @@
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   
   <script>
-    // Habilitar el widget de vista previa para imágenes múltiples
+    // Configuración personalizada para vista previa
     CMS.registerPreviewStyle(`
       .additional-images {
         display: flex;
@@ -34,9 +34,16 @@
       }
     `);
     
-   
+    // Redireccionar después de un inicio de sesión exitoso
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
   </script>
-  <!-- Importar el script de Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 </body>
 </html>

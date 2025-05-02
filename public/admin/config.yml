@@ -20,6 +20,7 @@ collections:
       - {label: "Imagen del autor", name: "authorImage", widget: "string", default: "/images/founder-magdalena.jpg"}
       - {label: "Categoría", name: "category", widget: "select", options: ["Mindfulness", "Relaciones", "Sanación Emocional", "Bienestar", "Espiritualidad"]}
       - {label: "Destacado", name: "featured", widget: "boolean", default: false}
+      - {label: "Borrador", name: "draft", widget: "boolean", default: false}
       - {label: "Etiquetas", name: "tags", widget: "list"}
       - {label: "Tiempo de lectura (minutos)", name: "minutesRead", widget: "number", default: 5, value_type: "int"}
       - {label: "Contenido", name: "body", widget: "markdown"}

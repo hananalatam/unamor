@@ -1,4 +1,7 @@
 ---
+// Import the Netlify Identity component
+import NetlifyIdentity from '../components/NetlifyIdentity.astro';
+
 // SEO props
 export interface Props {
   title?: string;
@@ -25,6 +28,9 @@ import Footer from "../components/Footer.astro";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    
+    <!-- Add Netlify Identity -->
+    <NetlifyIdentity />
     
     <!-- SEO Meta Tags -->
     <title>{title}</title>
