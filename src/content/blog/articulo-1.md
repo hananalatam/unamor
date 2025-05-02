@@ -8,7 +8,7 @@ author: Maria Magdalena Peña Romero
 authorImage: /images/founder.jpg
 category: Sanación Emocional
 featured: true
-draft: true
+draft: false
 tags:
   - duelo
   - pérdida
