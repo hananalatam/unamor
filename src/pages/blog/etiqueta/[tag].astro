@@ -10,13 +10,15 @@ export async function getStaticPaths() {
   });
   
   // Extraer todas las etiquetas únicas
-  const allTags = allPosts.flatMap((post: any) => post.data.tags);
-const uniqueTags = [...new Set(allTags)];
+  const allTags = allPosts.flatMap((post: any) => post.data.tags || []);
+  const uniqueTags = [...new Set(allTags)].filter(tag => tag && tag.trim() !== '');
   
   // Crear una ruta para cada etiqueta
   return uniqueTags.map(tag => {
-  // Filtrar posts por etiqueta
-  const tagPosts = allPosts.filter((post: any) => post.data.tags.includes(tag));
+    // Filtrar posts por etiqueta
+    const tagPosts = allPosts.filter((post: any) => 
+      post.data.tags && Array.isArray(post.data.tags) && post.data.tags.includes(tag)
+    );
     
     return {
       params: { tag: tag.toLowerCase().replace(/ /g, '-') },
@@ -137,7 +139,7 @@ const description = `Artículos sobre ${tag.toLowerCase()} en el blog de Un Amor
     <section class="py-16">
       <div class="container mx-auto px-4 text-center">
         <h2 class="mb-4 font-heading text-2xl font-medium md:text-3xl">
-            ¿Te interesa el tema de {(tag as string).toLowerCase()}?
+            ¿Te interesa el tema de {tag.toLowerCase()}?
           </h2>
         <p class="mx-auto mb-8 max-w-2xl text-lg text-body-600">
           Descubre cómo podemos acompañarte en tu proceso a través de nuestros programas personalizados.
