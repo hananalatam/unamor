@@ -1,14 +1,28 @@
 ---
 title: "El camino del duelo consciente: Atravesar la pérdida con presencia"
-description: "Cómo el mindfulness puede acompañarte en los procesos de duelo, ofreciendo un espacio para honrar el dolor y encontrar sanación en la pérdida."
+description: Cómo el mindfulness puede acompañarte en los procesos de duelo,
+  ofreciendo un espacio para honrar el dolor y encontrar sanación en la pérdida.
 pubDate: 2024-01-20
-heroImage: "/images/blog/conscious-grief.jpg"
+heroImage: /images/blog/unamorconsciente.jpg
+author: Maria Magdalena Peña Romero
+authorImage: /images/founder.jpg
+category: Sanación Emocional
 featured: true
-category: "Sanación Emocional"
-tags: ["duelo", "pérdida", "mindfulness", "resiliencia", "emociones"]
-author: "Maria Magdalena Peña Romero"
-authorImage: "/images/founder.jpg"
+draft: true
+tags:
+  - duelo
+  - pérdida
+  - mindfulness
+  - resiliencia
+  - emociones
 minutesRead: 10
+extraImages:
+  - image: /images/blog/taller-gratitud.jpg
+    caption: "Un recordatorio final El camino del duelo consciente no promete
+      eliminar el dolor, sino ofrecerte un espacio para que ese dolor sea
+      honrado y sostenido con dignidad y amor. Como dice John O'Donohue: \"El
+      duelo es un tiempo sagrado en que el amor que no pudiste ver se hace
+      visible en ti\"."
 ---
 
 # El camino del duelo consciente: Atravesar la pérdida con presencia
