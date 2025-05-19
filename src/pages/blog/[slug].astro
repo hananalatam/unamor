@@ -216,6 +216,7 @@ const updatedDate = entry.data.updatedDate ? formatDate(entry.data.updatedDate) 
               name={entry.data.author} 
               image={entry.data.authorImage}
               role={entry.data.authorProfile}
+              bio={entry.data.authorBio || ""}
               showSocial={true}
             />
           </div>
@@ -254,6 +255,7 @@ const updatedDate = entry.data.updatedDate ? formatDate(entry.data.updatedDate) 
                   name={entry.data.author} 
                   image={entry.data.authorImage}
                   role={entry.data.authorProfile}
+                  bio={entry.data.authorBio || ""}
                   showSocial={true}
                 />
               </div>
