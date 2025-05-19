@@ -5,54 +5,6 @@ import ShareButtons from '../../components/blog/ShareButtons.astro';
 import AuthorCard from '../../components/blog/AuthorCard.astro';
 import TableOfContents from '../../components/blog/TableOfContents.astro';
 
-// Definición de tipos para tener un tipado más seguro
-type AuthorName = 
-  | "Maria Magdalena Peña Romero" 
-  | "Paula Prieto Peña" 
-  | "Manuel Alejandro Bedoya" 
-  | "Ana María Prieto" 
-  | "Juan Bernardo Peña";
-
-// Mapeos de autor a imagen, perfil y bio
-const authorImages: Record<AuthorName, string> = {
-  "Maria Magdalena Peña Romero": "/images/founder-magdalena.jpg",
-  "Paula Prieto Peña": "/images/founder-paula.webp",
-  "Manuel Alejandro Bedoya": "/images/founder-manuel.webp",
-  "Ana María Prieto": "/images/founder-ana.webp",
-  "Juan Bernardo Peña": "/images/founder-juan.webp"
-};
-
-const authorProfiles: Record<AuthorName, string> = {
-  "Maria Magdalena Peña Romero": "Cofundadora y guía de mindfulness",
-  "Paula Prieto Peña": "Cofundadora y facilitadora",
-  "Manuel Alejandro Bedoya": "Emprendedor, amante de la tecnología y cinéfilo",
-  "Ana María Prieto": "Emprendedora, VC y autora",
-  "Juan Bernardo Peña": "Escritor y abogado"
-};
-
-const authorBios: Record<AuthorName, string> = {
-  "Maria Magdalena Peña Romero": "Acompañante y guía en el camino del mindfulness y el desarrollo personal.",
-  "Paula Prieto Peña": "Facilitadora de experiencias transformadoras a través del mindfulness y la creatividad.",
-  "Manuel Alejandro Bedoya": "Emprendedor y amante de la tecnología que explora la intersección entre el cine y el mindfulness.",
-  "Ana María Prieto": "Emprendedora y VC que integra el mindfulness en el mundo empresarial y las inversiones.",
-  "Juan Bernardo Peña": "Escritor y abogado que combina la precisión jurídica con la profundidad del mindfulness."
-};
-
-// Función para obtener la imagen del autor de manera segura
-function getAuthorImage(authorName: string): string {
-  return (authorImages as Record<string, string>)[authorName] || "/images/placeholder-author.jpg";
-}
-
-// Función para obtener el perfil del autor de manera segura
-function getAuthorProfile(authorName: string): string {
-  return (authorProfiles as Record<string, string>)[authorName] || "";
-}
-
-// Función para obtener la bio del autor de manera segura
-function getAuthorBio(authorName: string): string {
-  return (authorBios as Record<string, string>)[authorName] || "";
-}
-
 // Generamos las rutas estáticas para cada artículo del blog
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog', ({ data }: { data: any }) => {
@@ -64,8 +16,6 @@ export async function getStaticPaths() {
     props: { entry },
   }));
 }
-
-
 
 // Props del artículo actual
 const { entry } = Astro.props;
@@ -94,11 +44,36 @@ function formatDate(date: Date): string {
 const publishDate = formatDate(entry.data.pubDate);
 const updatedDate = entry.data.updatedDate ? formatDate(entry.data.updatedDate) : null;
 
-// Obtener información del autor
-const authorName = entry.data.author as string;
-const authorImage = getAuthorImage(authorName);
-const authorProfile = getAuthorProfile(authorName);
-const authorBio = getAuthorBio(authorName);
+// Mapeos de valores predeterminados
+const defaultAuthorImages: Record<string, string> = {
+  "Maria Magdalena Peña Romero": "/images/founder-magdalena.jpg",
+  "Paula Prieto Peña": "/images/founder-paula.webp",
+  "Manuel Alejandro Bedoya": "/images/founder-manuel.webp",
+  "Ana María Prieto": "/images/founder-ana.webp",
+  "Juan Bernardo Peña": "/images/founder-juan.webp"
+};
+
+const defaultAuthorProfiles: Record<string, string> = {
+  "Maria Magdalena Peña Romero": "Cofundadora y guía de mindfulness",
+  "Paula Prieto Peña": "Cofundadora y facilitadora",
+  "Manuel Alejandro Bedoya": "Emprendedor, amante de la tecnología y cinéfilo",
+  "Ana María Prieto": "Emprendedora, VC y autora",
+  "Juan Bernardo Peña": "Escritor y abogado"
+};
+
+const defaultAuthorBios: Record<string, string> = {
+  "Maria Magdalena Peña Romero": "Acompañante y guía en el camino del mindfulness y el desarrollo personal.",
+  "Paula Prieto Peña": "Facilitadora de experiencias transformadoras a través del mindfulness y la creatividad.",
+  "Manuel Alejandro Bedoya": "Emprendedor y amante de la tecnología que explora la intersección entre el cine y el mindfulness.",
+  "Ana María Prieto": "Emprendedora y VC que integra el mindfulness en el mundo empresarial y las inversiones.",
+  "Juan Bernardo Peña": "Escritor y abogado que combina la precisión jurídica con la profundidad del mindfulness."
+};
+
+// Usar valores existentes o predeterminados
+const authorName = entry.data.author;
+const authorImage = entry.data.authorImage || defaultAuthorImages[authorName] || "/images/placeholder-author.jpg";
+const authorProfile = entry.data.authorProfile || defaultAuthorProfiles[authorName] || "";
+const authorBio = entry.data.authorBio || defaultAuthorBios[authorName] || "";
 ---
 
 <Layout 
