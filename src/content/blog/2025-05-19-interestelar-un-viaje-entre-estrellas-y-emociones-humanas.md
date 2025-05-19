@@ -22,7 +22,7 @@ pubDate: 2025-05-19
 updatedDate: 2025-05-19
 heroImage: /images/blog/interestelarok.webp
 author: Manuel Alejandro Bedoya
-authorImage: /images/founder-magdalena.jpg
+authorImage: /images/manuel-p1.webp
 category: Relaciones
 featured: true
 draft: false
