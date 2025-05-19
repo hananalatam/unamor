@@ -106,20 +106,29 @@ import Footer from "../components/Footer.astro";
 
     <!-- Script para WhatsApp -->
     <script>
-      // Función para abrir WhatsApp con mensaje predeterminado
-      function openWhatsApp() {
-        const phone = "573045538216";
-        const message = "Hola, estoy interesad@ en conocer más sobre Un Amor Consciente.";
-        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank");
-      }
+  // Asignar la función a todos los botones de WhatsApp cuando la página esté cargada
+  document.addEventListener('astro:page-load', () => {
+    // Seleccionar todos los botones de WhatsApp
+    const whatsappButtons = document.querySelectorAll('.whatsapp-btn');
+    
+    // Para cada botón, agregar un event listener
+    whatsappButtons.forEach((buttonElement) => {
+      // Asegurarnos de que el elemento es un HTMLElement
+      const button = buttonElement as HTMLElement;
       
-      // Asignar la función a todos los botones de WhatsApp
-      document.addEventListener('astro:page-load', () => {
-        document.querySelectorAll('.whatsapp-btn').forEach(button => {
-          button.addEventListener('click', openWhatsApp);
-        });
+      button.addEventListener('click', () => {
+        const phone = "573045538216";
+        
+        // Obtener el mensaje personalizado del botón o usar el mensaje predeterminado
+        const customMessage = button.dataset.message || 
+                             "Hola, estoy interesad@ en conocer más sobre Un Amor Consciente.";
+        
+        // Abrir WhatsApp con el mensaje correspondiente
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(customMessage)}`, "_blank");
       });
-    </script>
+    });
+  });
+</script>
     
   </body>
 </html>
