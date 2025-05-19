@@ -245,12 +245,13 @@ const authorBio = entry.data.authorBio || defaultAuthorBios[authorName] || "";
           <div class="lg:hidden mt-8 mb-12 bg-white rounded-lg shadow-md p-6">
             <h3 class="text-xl font-medium mb-4">Sobre el autor</h3>
             <AuthorCard 
-            name={authorName}
-            image={authorImage}
-            role={authorProfile}
-            bio={authorBio}
-            showSocial={true}
-          />
+  name={entry.data.author} 
+  image={entry.data.authorImage}
+  role={entry.data.authorProfile}
+  bio={entry.data.authorBio}
+  showSocial={true}
+/>
+
           </div>
         </div>
         
@@ -284,12 +285,13 @@ const authorBio = entry.data.authorBio || defaultAuthorBios[authorName] || "";
               </div>
               <div class="p-6">
                 <AuthorCard 
-                  name={authorName}
-                  image={authorImage}
-                  role={authorProfile}
-                  bio={authorBio}
-                  showSocial={true}
-                />
+  name={entry.data.author} 
+  image={entry.data.authorImage}
+  role={entry.data.authorProfile}
+  bio={entry.data.authorBio}
+  showSocial={true}
+/>
+
               </div>
             </div>
             
