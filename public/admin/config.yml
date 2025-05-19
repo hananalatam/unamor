@@ -44,17 +44,14 @@ collections:
       - label: "Autor"
         name: "author"
         widget: "select"
-        options: ["Maria Magdalena Peña Romero", "Paula Prieto Peña"]
+        options: ["Maria Magdalena Peña Romero", "Paula Prieto Peña", "Manuel Alejandro Bedoya", "Ana María Prieto", "Juan Bernardo Peña"]
         default: "Maria Magdalena Peña Romero"
         
       - label: "Imagen del autor"
         name: "authorImage"
         widget: "string"
-        default: "/images/founder-magdalena.jpg"
-        options:
-          - {label: "María Magdalena", value: "/images/founder-magdalena.jpg"}
-          - {label: "Paula", value: "/images/founder-paula.jpg"}
-        hint: "Selecciona la imagen correspondiente al autor"
+        required: false
+        hint: "Se llenará automáticamente según el autor elegido"
         
       - label: "Categoría"
         name: "category"
