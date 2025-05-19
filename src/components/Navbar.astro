@@ -17,7 +17,7 @@ const currentPath = Astro.url.pathname;
 <nav>
   <button 
     id="menu-toggle"
-    class="lg:hidden flex flex-col justify-center items-center space-y-1.5 w-10 h-10 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+    class="lg:hidden flex flex-col justify-center items-center space-y-1.5 w-10 h-10 rounded-md focus:outline-none focus:ring-2 focus:ring-teal-900"
     aria-label="Abrir menú"
     aria-expanded="false"
     aria-controls="mobile-menu"
@@ -33,9 +33,9 @@ const currentPath = Astro.url.pathname;
             <li>
               <a 
                 href={item.href} 
-                class={`relative text-base font-medium transition-colors duration-300 hover:text-primary-500 ${
+                class={`relative text-base font-medium transition-colors duration-300 hover:text-teal-900 ${
                   (currentPath === '/' && item.href.includes('#')) || (currentPath + '#' + item.href.split('#')[1] === item.href)
-                    ? "text-primary-500 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary-500" 
+                    ? "text-teal-600 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-teal-600" 
                     : "text-body-600"
                 }`}
                 aria-current={

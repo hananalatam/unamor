@@ -17,9 +17,9 @@ const isBlogActive = currentPath.includes('/blog');
 <li class="relative group">
   <a 
     href="/blog" 
-    class={`relative text-base font-medium transition-colors duration-300 hover:text-primary-500 ${
+    class={`relative text-base font-medium transition-colors duration-300 hover:text-teal-900 ${
       isBlogActive 
-        ? "text-primary-500 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-primary-500" 
+        ? "text-teal-900 after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-teal-900" 
         : "text-body-600"
     }`}
     aria-current={isBlogActive ? "page" : undefined}
@@ -41,7 +41,7 @@ const isBlogActive = currentPath.includes('/blog');
     <div class="py-1" role="menu" aria-orientation="vertical">
       <a 
         href="/blog" 
-        class="block px-4 py-2 text-sm text-body-700 hover:bg-primary-50 hover:text-primary-700" 
+        class="block px-4 py-2 text-sm text-body-700 hover:bg-teal-600 hover:text-white" 
         role="menuitem"
       >
         Todos los artículos
@@ -56,7 +56,7 @@ const isBlogActive = currentPath.includes('/blog');
       {categories.map((category) => (
         <a 
           href={`/blog/categoria/${(category as string).toLowerCase().replace(/ /g, '-')}`} 
-          class="block px-4 py-2 text-sm text-body-700 hover:bg-primary-50 hover:text-primary-700" 
+          class="block px-4 py-2 text-sm text-body-700 hover:bg-teal-200/50 hover:text-teal-900" 
           role="menuitem"
         >
           {category as string}
@@ -67,7 +67,7 @@ const isBlogActive = currentPath.includes('/blog');
       
       <a 
         href="/blog#newsletter" 
-        class="block px-4 py-2 text-sm text-body-700 hover:bg-primary-50 hover:text-primary-700" 
+        class="block px-4 py-2 text-sm text-body-700 hover:bg-primary-50 hover:text-teal-950" 
         role="menuitem"
       >
         Suscribirse al boletín

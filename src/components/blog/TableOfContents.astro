@@ -43,13 +43,13 @@
         const link = document.createElement('a');
         link.href = `#${heading.id}`;
         link.textContent = heading.textContent || '';
-        link.classList.add('hover:text-primary-600', 'transition-colors', 'duration-200', 'ease-in-out', 'flex', 'items-start');
+        link.classList.add('hover:text-teal-900', 'transition-colors', 'duration-200', 'ease-in-out', 'flex', 'items-start');
         
         // Añadir un ícono solo para los títulos H2
         if (heading.tagName === 'H2') {
           const icon = document.createElement('span');
           icon.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-1 text-primary-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2 mt-1 text-teal-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           `;

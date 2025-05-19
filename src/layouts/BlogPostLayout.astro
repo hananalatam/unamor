@@ -41,7 +41,7 @@ const formattedUpdatedDate = updatedDate ? new Intl.DateTimeFormat('es-ES', {
           class="h-full w-full object-cover"
         />
       ) : (
-        <div class="h-full w-full bg-gradient-to-r from-primary-900 to-primary-700 flex items-center justify-center">
+        <div class="h-full w-full bg-gradient-to-r from-primary-900 to-teal-950 flex items-center justify-center">
           <h1 class="text-white text-4xl md:text-5xl font-heading font-medium px-4 text-center">{title}</h1>
         </div>
       )}
@@ -53,19 +53,19 @@ const formattedUpdatedDate = updatedDate ? new Intl.DateTimeFormat('es-ES', {
       <nav class="breadcrumbs py-4" aria-label="Breadcrumb">
         <ol class="flex flex-wrap text-sm">
           <li class="flex items-center">
-            <a href="/" class="text-body-500 hover:text-primary-600">Inicio</a>
+            <a href="/" class="text-body-500 hover:text-teal-900">Inicio</a>
             <svg class="mx-2 h-4 w-4 text-body-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </li>
           <li class="flex items-center">
-            <a href="/blog" class="text-body-500 hover:text-primary-600">Blog</a>
+            <a href="/blog" class="text-body-500 hover:text-teal-900">Blog</a>
             <svg class="mx-2 h-4 w-4 text-body-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
             </svg>
           </li>
           <li>
-            <a href={`/blog/categoria/${category.toLowerCase().replace(/ /g, '-')}`} class="text-body-500 hover:text-primary-600">
+            <a href={`/blog/categoria/${category.toLowerCase().replace(/ /g, '-')}`} class="text-body-500 hover:text-teal-900">
               {category}
             </a>
           </li>
@@ -76,7 +76,7 @@ const formattedUpdatedDate = updatedDate ? new Intl.DateTimeFormat('es-ES', {
       <header class="-mt-16 relative z-10 rounded-t-3xl bg-white p-6 md:p-8 lg:p-10">
         <a
           href={`/blog/categoria/${category.toLowerCase().replace(/ /g, '-')}`}
-          class="mb-4 inline-block rounded-full bg-primary-100 px-3 py-1 text-xs font-medium text-primary-700 transition-colors hover:bg-primary-200"
+          class="mb-4 inline-block rounded-full bg-primary-100 px-3 py-1 text-xs font-medium text-teal-950 transition-colors hover:bg-primary-200"
         >
           {category}
         </a>

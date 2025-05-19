@@ -34,7 +34,7 @@ const description = "Artículos, reflexiones y recursos sobre mindfulness, biene
       <div class="container mx-auto px-4">
         <div class="text-center mb-12">
           <h1 class="font-heading text-4xl md:text-5xl lg:text-6xl font-medium mb-6 text-body-800">
-            Blog <span class="text-primary-600">Un Amor Consciente</span>
+            Blog <span class="text-teal-900">Un Amor Consciente</span>
           </h1>
           <p class="text-lg md:text-xl text-body-600 max-w-3xl mx-auto mb-10">
             Encuentra artículos, reflexiones y prácticas para cultivar presencia, 
@@ -44,14 +44,14 @@ const description = "Artículos, reflexiones y recursos sobre mindfulness, biene
             {categories.slice(0, 5).map((category) => (
               <a
                 href={`/blog/categoria/${(category as string).toLowerCase().replace(/ /g, '-')}`}
-                class="rounded-full bg-white px-4 py-2 text-sm font-medium text-primary-700 shadow-sm transition-colors hover:bg-primary-50 border border-primary-100"
+                class="rounded-full bg-white px-4 py-2 text-sm font-medium text-teal-950 shadow-sm transition-colors hover:bg-primary-50 border border-primary-100"
               >
                 {category as string}
               </a>
             ))}
             <a
               href="#todas-categorias"
-              class="rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-primary-700 shadow-sm transition-colors hover:bg-primary-100"
+              class="rounded-full bg-primary-50 px-4 py-2 text-sm font-medium text-teal-950 shadow-sm transition-colors hover:bg-primary-100"
             >
               Ver todas
             </a>
@@ -74,7 +74,7 @@ const description = "Artículos, reflexiones y recursos sobre mindfulness, biene
                   />
                   <div class="absolute bottom-0 left-0 z-20 p-6 md:p-8 w-full">
                     <div class="mb-3">
-                      <span class="inline-block rounded-full bg-primary-500 px-3 py-1 text-xs font-bold text-white">
+                      <span class="inline-block rounded-full bg-teal-900 px-3 py-1 text-xs font-bold text-white">
                         {featuredPosts[0].data.category}
                       </span>
                     </div>
@@ -126,7 +126,7 @@ const description = "Artículos, reflexiones y recursos sobre mindfulness, biene
                       />
                       <div class="absolute bottom-0 left-0 z-20 p-4 w-full">
                         <div class="mb-2">
-                          <span class="inline-block rounded-full bg-primary-500 px-2 py-1 text-xs font-bold text-white">
+                          <span class="inline-block rounded-full bg-teal-900 px-2 py-1 text-xs font-bold text-white">
                             {post.data.category}
                           </span>
                         </div>
@@ -160,7 +160,7 @@ const description = "Artículos, reflexiones y recursos sobre mindfulness, biene
             <input
               type="text"
               placeholder="Buscar artículos..."
-              class="w-full md:w-64 px-4 py-2 pl-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+              class="w-full md:w-64 px-4 py-2 pl-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-teal-900 focus:border-teal-900"
             />
             <svg xmlns="http://www.w3.org/2000/svg" class="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
@@ -177,7 +177,7 @@ const description = "Artículos, reflexiones y recursos sobre mindfulness, biene
                 class="flex items-center justify-between bg-white p-4 rounded-lg shadow-sm border border-gray-100 hover:border-primary-200 hover:shadow-md transition-all"
               >
                 <span class="font-medium text-body-700">{category as string}</span>
-                <span class="bg-secondary-100 text-primary-700 text-xs font-medium px-2 py-1 rounded-full">
+                <span class="bg-secondary-100 text-teal-950 text-xs font-medium px-2 py-1 rounded-full">
                   {count} {count === 1 ? 'artículo' : 'artículos'}
                 </span>
               </a>
@@ -200,7 +200,7 @@ const description = "Artículos, reflexiones y recursos sobre mindfulness, biene
         
         {sortedPosts.length > 6 && (
           <div class="mt-12 text-center">
-            <button id="load-more" class="bg-primary-50 hover:bg-primary-100 text-primary-700 font-medium py-3 px-6 rounded-md transition-colors duration-300 inline-flex items-center">
+            <button id="load-more" class="bg-primary-50 hover:bg-primary-100 text-teal-950 font-medium py-3 px-6 rounded-md transition-colors duration-300 inline-flex items-center">
               Cargar más artículos
               <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
@@ -222,7 +222,7 @@ const description = "Artículos, reflexiones y recursos sobre mindfulness, biene
             return (
               <a
                 href={`/blog/etiqueta/${(tag as string).toLowerCase().replace(/ /g, '-')}`}
-                class="bg-white px-4 py-2 rounded-full shadow-sm text-body-600 hover:text-primary-700 hover:bg-primary-50 transition-colors text-sm"
+                class="bg-white px-4 py-2 rounded-full shadow-sm text-body-600 hover:text-teal-950 hover:bg-primary-50 transition-colors text-sm"
               >
                 #{tag as string} <span class="text-xs text-body-400">({count})</span>
               </a>
@@ -233,7 +233,7 @@ const description = "Artículos, reflexiones y recursos sobre mindfulness, biene
     </section>
 
     <!-- Suscripción al boletín -->
-    <section class="py-16 bg-gradient-to-r from-primary-500 to-primary-600 text-white">
+    <section class="py-16 bg-gradient-to-r from-teal-900 to-teal-900 text-white">
       <div class="container mx-auto px-4 text-center">
         <h2 class="text-3xl font-heading font-medium mb-4">Recibe nuestras reflexiones en tu email</h2>
         <p class="max-w-2xl mx-auto mb-8 opacity-90">
@@ -249,7 +249,7 @@ const description = "Artículos, reflexiones y recursos sobre mindfulness, biene
           />
           <button
             type="submit"
-            class="bg-white text-primary-700 hover:bg-primary-50 font-medium py-3 px-6 rounded-md transition-colors"
+            class="bg-white text-teal-950 hover:bg-primary-50 font-medium py-3 px-6 rounded-md transition-colors"
           >
             Suscribirme
           </button>
