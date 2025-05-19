@@ -52,13 +52,37 @@ collections:
         widget: "string"
         default: "/images/founder-magdalena.jpg"
         options:
-          options:
           - {label: "María Magdalena", value: "/images/founder-magdalena.jpg"}
           - {label: "Paula", value: "/images/founder-paula.webp"}
-          - {label: "Manuel Alejandro", value: "/images/manuel-p1.webp"}
-          - {label: "Ana María", value: "/images/ana-p2.webp"}
-          - {label: "Juan Bernardo", value: "/images/juan-p3.webp"}
+          - {label: "Manuel Alejandro", value: "/images/founder-manuel.webp"}
+          - {label: "Ana María", value: "/images/founder-ana.webp"}
+          - {label: "Juan Bernardo", value: "/images/founder-juan.webp"}
         hint: "Selecciona la imagen correspondiente al autor"
+        
+      - label: "Perfil del autor"
+        name: "authorProfile"
+        widget: "string"
+        default: "Cofundadora y guía de mindfulness"
+        options:
+          - {label: "María Magdalena", value: "Cofundadora y guía de mindfulness"}
+          - {label: "Paula", value: "Cofundadora y facilitadora"}
+          - {label: "Manuel Alejandro", value: "Emprendedor, amante de la tecnología y cinéfilo"}
+          - {label: "Ana María", value: "Emprendedora, VC y autora"}
+          - {label: "Juan Bernardo", value: "Escritor y abogado"}
+        hint: "Selecciona el perfil que corresponde al autor"
+
+      - label: "Biografía del autor"
+        name: "authorBio"
+        widget: "string"
+        default: "Acompañante y guía en el camino del mindfulness y el desarrollo personal."
+        options:
+          - {label: "María Magdalena", value: "Acompañante y guía en el camino del mindfulness y el desarrollo personal."}
+          - {label: "Paula", value: "Facilitadora de experiencias transformadoras a través del mindfulness y la creatividad."}
+          - {label: "Manuel Alejandro", value: "Colaborador que explora la intersección entre tecnología, mindfulness y narrativas cinematográficas."}
+          - {label: "Ana María", value: "Colaboradora que integra el mindfulness en el emprendimiento y las inversiones con propósito."}
+          - {label: "Juan Bernardo", value: "Colaborador que combina la precisión jurídica con la profundidad contemplativa en sus escritos."}
+        hint: "Selecciona la biografía que corresponde al autor"
+
         
       - label: "Categoría"
         name: "category"
