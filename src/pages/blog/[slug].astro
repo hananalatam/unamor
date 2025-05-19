@@ -17,6 +17,24 @@ export async function getStaticPaths() {
   }));
 }
 
+// Mapeo de autores a sus biografías
+const authorBios = {
+  "Maria Magdalena Peña Romero": "Acompañante y guía en el camino del mindfulness y el desarrollo personal.",
+  "Paula Prieto Peña": "Facilitadora de experiencias transformadoras a través del mindfulness y la creatividad.",
+  "Manuel Alejandro Bedoya": "Emprendedor y amante de la tecnología que explora la intersección entre el cine y el mindfulness.",
+  "Ana María Prieto": "Emprendedora y VC que integra el mindfulness en el mundo empresarial y las inversiones.",
+  "Juan Bernardo Peña": "Escritor y abogado que combina la precisión jurídica con la profundidad del mindfulness."
+};
+
+// Mapeo de autores a sus perfiles
+const authorProfiles = {
+  "Maria Magdalena Peña Romero": "Cofundadora y guía de mindfulness",
+  "Paula Prieto Peña": "Cofundadora y facilitadora",
+  "Manuel Alejandro Bedoya": "Emprendedor, amante de la tecnología y cinéfilo",
+  "Ana María Prieto": "Emprendedora, VC y autora",
+  "Juan Bernardo Peña": "Escritor y abogado"
+};
+
 // Props del artículo actual
 const { entry } = Astro.props;
 const { Content } = await (entry as any).render();
