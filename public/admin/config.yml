@@ -52,13 +52,24 @@ collections:
         widget: "string"
         default: "/images/founder-magdalena.jpg"
         options:
-          options:
           - {label: "María Magdalena", value: "/images/founder-magdalena.jpg"}
           - {label: "Paula", value: "/images/founder-paula.webp"}
-          - {label: "Manuel Alejandro", value: "/images/manuel-p1.webp"}
-          - {label: "Ana María", value: "/images/ana-p2.webp"}
-          - {label: "Juan Bernardo", value: "/images/juan-p3.webp"}
+          - {label: "Manuel Alejandro", value: "/images/founder-manuel.webp"}
+          - {label: "Ana María", value: "/images/founder-ana.webp"}
+          - {label: "Juan Bernardo", value: "/images/founder-juan.webp"}
         hint: "Selecciona la imagen correspondiente al autor"
+        
+      - label: "Perfil del autor"
+        name: "authorProfile"
+        widget: "string"
+        default: "Cofundadora y guía de mindfulness"
+        options:
+          - {label: "María Magdalena", value: "Cofundadora y guía de mindfulness"}
+          - {label: "Paula", value: "Cofundadora y facilitadora"}
+          - {label: "Manuel Alejandro", value: "Emprendedor, amante de la tecnología y cinéfilo"}
+          - {label: "Ana María", value: "Emprendedora, VC y autora"}
+          - {label: "Juan Bernardo", value: "Escritor y abogado"}
+        hint: "Selecciona el perfil que corresponde al autor"
         
       - label: "Categoría"
         name: "category"
