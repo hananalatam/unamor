@@ -21,7 +21,7 @@ description: >
 pubDate: 2025-05-20
 updatedDate: 2025-05-20
 heroImage: /images/blog/bornout-0.jpg
-author: Juan Bernardo Peña
+author: Manuel Alejandro Bedoya
 category: Sanación Emocional
 featured: false
 draft: false
