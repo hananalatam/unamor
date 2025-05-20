@@ -11,6 +11,70 @@
   <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   
   <script>
+    // Mapeo de autor a sus datos
+    var authorMap = {
+      "Maria Magdalena Peña Romero": {
+        image: "/images/founder-magdalena.jpg",
+        profile: "Cofundadora y guía de mindfulness",
+        bio: "Guía de mindfulness con amplia formación en psicología transpersonal. Acompaña procesos de sanación emocional y conexión interior desde la presencia amorosa y la sabiduría vivencial."
+      },
+      "Paula Prieto Peña": {
+        image: "/images/founder-paula.webp",
+        profile: "Cofundadora y facilitadora",
+        bio: "Creativa facilitadora que combina sensibilidad artística con prácticas contemplativas. Especializada en traducir la sabiduría ancestral a experiencias accesibles para el mundo contemporáneo."
+      },
+      "Manuel Alejandro Bedoya": {
+        image: "/images/founder-manuel.webp",
+        profile: "Emprendedor, amante de la tecnología y cinéfilo",
+        bio: "Emprendedor y amante de la tecnología que explora la intersección entre el cine y el mindfulness. Comparte reflexiones sobre consciencia digital y narrativas transformadoras."
+      },
+      "Ana María Prieto": {
+        image: "/images/founder-ana.webp",
+        profile: "Emprendedora, VC y autora",
+        bio: "Emprendedora e inversionista que integra prácticas de atención plena en el mundo empresarial. Especialista en liderazgo consciente y modelos de negocio con propósito."
+      },
+      "Juan Bernardo Peña": {
+        image: "/images/founder-juan.webp",
+        profile: "Escritor y abogado",
+        bio: "Escritor y abogado que combina el rigor analítico con la profundidad contemplativa. Sus reflexiones conectan la ética, el derecho y la búsqueda existencial desde una mirada integradora."
+      }
+    };
+
+    // Esperar a que el CMS esté listo
+    CMS.registerEventListener({
+      name: 'preSave',
+      handler: function(data) {
+        console.log('PreSave Data:', data);
+        var selectedAuthor = data.entry.get('data').get('author');
+        console.log('Selected Author:', selectedAuthor);
+
+        if (selectedAuthor && authorMap[selectedAuthor]) {
+          data.entry.get('data').set('authorImage', authorMap[selectedAuthor].image);
+          data.entry.get('data').set('authorProfile', authorMap[selectedAuthor].profile);
+          data.entry.get('data').set('authorBio', authorMap[selectedAuthor].bio);
+        }
+        return data;
+      }
+    });
+
+    // Añadir listener para actualizar campos cuando cambia el autor
+    CMS.registerEventListener({
+      name: 'change',
+      handler: function(options) {
+        console.log('Change Options:', options);
+        if (options.field.get('name') === 'author') {
+          var selectedAuthor = options.value;
+          var entry = options.entry;
+          
+          if (selectedAuthor && authorMap[selectedAuthor]) {
+            entry.get('data').set('authorImage', authorMap[selectedAuthor].image);
+            entry.get('data').set('authorProfile', authorMap[selectedAuthor].profile);
+            entry.get('data').set('authorBio', authorMap[selectedAuthor].bio);
+          }
+        }
+      }
+    });
+
     // Configuración personalizada para vista previa
     CMS.registerPreviewStyle(`
       .additional-images {
