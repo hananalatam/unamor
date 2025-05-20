@@ -5,6 +5,16 @@ import ShareButtons from '../../components/blog/ShareButtons.astro';
 import AuthorCard from '../../components/blog/AuthorCard.astro';
 import TableOfContents from '../../components/blog/TableOfContents.astro';
 
+// Definición de tipos para los mapeos de autor
+type AuthorData = {
+  "Maria Magdalena Peña Romero": string;
+  "Paula Prieto Peña": string;
+  "Manuel Alejandro Bedoya": string;
+  "Ana María Prieto": string;
+  "Juan Bernardo Peña": string;
+  [key: string]: string; // Para permitir otros nombres
+};
+
 // Generamos las rutas estáticas para cada artículo del blog
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blog', ({ data }: { data: any }) => {
@@ -44,8 +54,8 @@ function formatDate(date: Date): string {
 const publishDate = formatDate(entry.data.pubDate);
 const updatedDate = entry.data.updatedDate ? formatDate(entry.data.updatedDate) : null;
 
-// Mapeos de valores predeterminados
-const defaultAuthorImages: Record<string, string> = {
+// Mapeos de valores predeterminados de autor con el tipo correcto
+const defaultAuthorImages: AuthorData = {
   "Maria Magdalena Peña Romero": "/images/founder-magdalena.jpg",
   "Paula Prieto Peña": "/images/founder-paula.webp",
   "Manuel Alejandro Bedoya": "/images/manuel-p1.webp",
@@ -53,27 +63,54 @@ const defaultAuthorImages: Record<string, string> = {
   "Juan Bernardo Peña": "/images/juan-p3.webp"
 };
 
-const defaultAuthorProfiles: Record<string, string> = {
+const defaultAuthorProfiles: AuthorData = {
   "Maria Magdalena Peña Romero": "Cofundadora y guía de mindfulness",
   "Paula Prieto Peña": "Cofundadora y facilitadora",
-  "Manuel Alejandro Bedoya": "Emprendedor, apasionado de la tecnología y cinéfilo",
+  "Manuel Alejandro Bedoya": "Emprendedor, amante de la tecnología y cinéfilo",
   "Ana María Prieto": "Emprendedora, VC y autora",
   "Juan Bernardo Peña": "Escritor y abogado"
 };
 
-const defaultAuthorBios: Record<string, string> = {
-  "Maria Magdalena Peña Romero": "Acompañante y guía en el camino del mindfulness y el desarrollo personal.",
-  "Paula Prieto Peña": "Facilitadora de experiencias transformadoras a través del mindfulness y la creatividad.",
-  "Manuel Alejandro Bedoya": "Emprendedor y amante de la tecnología que explora la intersección entre el cine y el mindfulness.",
-  "Ana María Prieto": "Emprendedora y VC que integra el mindfulness en el mundo empresarial y las inversiones.",
-  "Juan Bernardo Peña": "Escritor y abogado que combina la precisión jurídica con la profundidad del mindfulness."
+const defaultAuthorBios: AuthorData = {
+  "Maria Magdalena Peña Romero": "Guía de mindfulness con amplia formación en psicología transpersonal. Acompaña procesos de sanación emocional y conexión interior desde la presencia amorosa y la sabiduría vivencial.",
+  "Paula Prieto Peña": "Facilitadora de experiencias transformadoras a través del mindfulness y la creatividad. Especializada en traducir la sabiduría ancestral a experiencias accesibles para el mundo contemporáneo.",
+  "Manuel Alejandro Bedoya": "Emprendedor y amante de la tecnología que explora la intersección entre el cine y el mindfulness. Comparte reflexiones sobre consciencia digital y narrativas transformadoras.",
+  "Ana María Prieto": "Emprendedora e inversionista que integra prácticas de atención plena en el mundo empresarial. Especialista en liderazgo consciente y modelos de negocio con propósito.",
+  "Juan Bernardo Peña": "Escritor y abogado que combina el rigor analítico con la profundidad contemplativa. Sus reflexiones conectan la ética, el derecho y la búsqueda existencial desde una mirada integradora."
 };
 
-// Usar valores existentes o predeterminados
-const authorName = entry.data.author;
-const authorImage = entry.data.authorImage || defaultAuthorImages[authorName] || "/images/placeholder-author.jpg";
-const authorProfile = entry.data.authorProfile || defaultAuthorProfiles[authorName] || "";
-const authorBio = entry.data.authorBio || defaultAuthorBios[authorName] || "";
+// Obtener datos del autor con seguridad de tipos
+const authorName = entry.data.author || "Autor";
+let authorImage: string;
+let authorProfile: string;
+let authorBio: string;
+
+// Comprobar si el autor existe en el objeto antes de acceder
+if (authorName in defaultAuthorImages) {
+  authorImage = entry.data.authorImage || defaultAuthorImages[authorName as keyof AuthorData];
+} else {
+  authorImage = entry.data.authorImage || "/images/placeholder-author.jpg";
+}
+
+if (authorName in defaultAuthorProfiles) {
+  authorProfile = entry.data.authorProfile || defaultAuthorProfiles[authorName as keyof AuthorData];
+} else {
+  authorProfile = entry.data.authorProfile || "";
+}
+
+if (authorName in defaultAuthorBios) {
+  authorBio = entry.data.authorBio || defaultAuthorBios[authorName as keyof AuthorData];
+} else {
+  authorBio = entry.data.authorBio || "";
+}
+
+// Añadir log para depuración
+console.log("Datos de autor finales:", {
+  name: authorName,
+  image: authorImage,
+  profile: authorProfile,
+  bio: authorBio
+});
 ---
 
 <Layout 
@@ -149,17 +186,15 @@ const authorBio = entry.data.authorBio || defaultAuthorBios[authorName] || "";
         
         <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
           <div class="flex items-center">
-            {entry.data.authorImage && (
-              <img 
-                src={entry.data.authorImage} 
-                alt={entry.data.author}
-                class="mr-3 h-10 w-10 rounded-full object-cover border-2 border-primary-100"
-                width={40}
-                height={40}
-              />
-            )}
+            <img 
+              src={authorImage} 
+              alt={authorName}
+              class="mr-3 h-10 w-10 rounded-full object-cover border-2 border-primary-100"
+              width={40}
+              height={40}
+            />
             <div>
-              <p class="font-medium">{entry.data.author}</p>
+              <p class="font-medium">{authorName}</p>
               <p class="text-sm text-body-500">
                 Publicado el {publishDate}
                 {updatedDate && ` • Actualizado el ${updatedDate}`}
@@ -244,14 +279,51 @@ const authorBio = entry.data.authorBio || defaultAuthorBios[authorName] || "";
           <!-- Author bio at the end of the content (mobile only) -->
           <div class="lg:hidden mt-8 mb-12 bg-white rounded-lg shadow-md p-6">
             <h3 class="text-xl font-medium mb-4">Sobre el autor</h3>
-            <AuthorCard 
-  name={entry.data.author} 
-  image={entry.data.authorImage}
-  role={entry.data.authorProfile}
-  bio={entry.data.authorBio}
-  showSocial={true}
-/>
-
+            
+            <!-- COMPONENTE AUTHORCARD CON DATOS EXPLÍCITOS -->
+            <div class="author-card flex flex-col items-center text-center">
+              <img 
+                src={authorImage} 
+                alt={`Fotografía de ${authorName}`} 
+                class="h-20 w-20 rounded-full object-cover mb-4 border-2 border-primary-100"
+                loading="lazy"
+              />
+              <h3 class="text-lg font-medium">{authorName}</h3>
+              
+              {authorProfile && authorProfile.trim() !== "" && (
+                <p class="text-sm text-body-500 mb-2">{authorProfile}</p>
+              )}
+              
+              {authorBio && authorBio.trim() !== "" && (
+                <p class="text-sm text-body-600 italic mb-4">{authorBio}</p>
+              )}
+              
+              <div class="flex space-x-3 mt-2">
+                <a 
+                  href="https://www.instagram.com/unamorconsciente" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="text-body-400 hover:text-primary-600 transition-colors"
+                  aria-label="Instagram"
+                >
+                  <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                  </svg>
+                </a>
+                
+                <a 
+                  href="https://www.facebook.com/unamorconsciente" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  class="text-body-400 hover:text-primary-600 transition-colors"
+                  aria-label="Facebook"
+                >
+                  <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -284,18 +356,54 @@ const authorBio = entry.data.authorBio || defaultAuthorBios[authorName] || "";
                 </h2>
               </div>
               <div class="p-6">
-                <AuthorCard 
-  name={entry.data.author} 
-  image={entry.data.authorImage}
-  role={entry.data.authorProfile}
-  bio={entry.data.authorBio}
-  showSocial={true}
-/>
-
+                <!-- COMPONENTE AUTHORCARD CON DATOS EXPLÍCITOS -->
+                <div class="author-card flex flex-col items-center text-center">
+                  <img 
+                    src={authorImage} 
+                    alt={`Fotografía de ${authorName}`} 
+                    class="h-20 w-20 rounded-full object-cover mb-4 border-2 border-primary-100"
+                    loading="lazy"
+                  />
+                  <h3 class="text-lg font-medium">{authorName}</h3>
+                  
+                  {authorProfile && authorProfile.trim() !== "" && (
+                    <p class="text-sm text-body-500 mb-2">{authorProfile}</p>
+                  )}
+                  
+                  {authorBio && authorBio.trim() !== "" && (
+                    <p class="text-sm text-body-600 italic mb-4">{authorBio}</p>
+                  )}
+                  
+                  <div class="flex space-x-3 mt-2">
+                    <a 
+                      href="https://www.instagram.com/unamorconsciente" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="text-body-400 hover:text-primary-600 transition-colors"
+                      aria-label="Instagram"
+                    >
+                      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                      </svg>
+                    </a>
+                    
+                    <a 
+                      href="https://www.facebook.com/unamorconsciente" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="text-body-400 hover:text-primary-600 transition-colors"
+                      aria-label="Facebook"
+                    >
+                      <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                      </svg>
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
             
-            <!-- Tags (desktop sidebar) -->
+           <!-- Tags (desktop sidebar) -->
             {entry.data.tags && entry.data.tags.length > 0 && (
               <div class="hidden lg:block bg-white rounded-lg shadow-md overflow-hidden">
                 <div class="bg-primary-50 py-4 px-6 border-b border-primary-100">
