@@ -10,10 +10,17 @@ const navItems = [
   { href: "/#contacto", text: "Contacto" },
 ];
 
+// Lista de rutas de servicios que deben activar el enlace "Servicios"
+const serviceRoutes = [
+  "mindfulness-transpersonal",
+  "programas-21-dias", 
+  "talleres-retiros"
+];
+
 // Determinar la ruta actual para resaltar el enlace activo
 const currentPath = Astro.url.pathname;
 // Obtener el hash actual (# parte de la URL) o vacío si no hay hash
-const currentHash = Astro.url.hash || '#inicio'; // Por defecto marca 'inicio' en la página principal
+const currentHash = Astro.url.hash;
 ---
 
 <nav>
@@ -37,10 +44,14 @@ const currentHash = Astro.url.hash || '#inicio'; // Por defecto marca 'inicio' e
           
           // Determinar si este ítem está activo
           const isActive = 
-            // En la página principal, verificar si coincide el hash
-            (currentPath === '/' && itemHash === currentHash) ||
-            // En otras páginas, verificar si la ruta coincide
-            (currentPath !== '/' && item.href.startsWith(currentPath));
+            // En la página principal con hash, verificar si coincide el hash
+            (currentPath === '/' && currentHash && itemHash === currentHash) ||
+            // En la página principal sin hash, activar "Inicio" por defecto
+            (currentPath === '/' && !currentHash && item.text === "Inicio") ||
+            // En páginas de servicios, activar "Servicios"
+            (item.text === "Servicios" && serviceRoutes.some(route => currentPath.includes(route))) ||
+            // En otras páginas, verificar si la ruta coincide exactamente
+            (currentPath !== '/' && item.href.startsWith(currentPath) && !item.href.includes('#'));
             
           return (
             <li>
@@ -52,6 +63,7 @@ const currentHash = Astro.url.hash || '#inicio'; // Por defecto marca 'inicio' e
                     : "text-body-600"
                 }`}
                 aria-current={isActive ? "page" : undefined}
+                data-section={item.href.includes('#') ? item.href.split('#')[1] : ''}
               >
                 {item.text}
               </a>
@@ -157,6 +169,8 @@ const currentHash = Astro.url.hash || '#inicio'; // Por defecto marca 'inicio' e
       
       // Función para actualizar visualmente el enlace activo basado en el hash
       function updateActiveLink(hash: string): void {
+        if (window.location.pathname !== '/') return; // Solo aplica en la página principal
+        
         // Por defecto, usa #inicio si no hay hash
         const activeHash = hash || '#inicio';
         
@@ -182,11 +196,43 @@ const currentHash = Astro.url.hash || '#inicio'; // Por defecto marca 'inicio' e
       }
       
       // Actualizar enlaces al cargar la página
-      updateActiveLink(window.location.hash);
+      if (window.location.pathname === '/') {
+        updateActiveLink(window.location.hash);
+      }
       
       // Actualizar enlaces cuando cambia el hash
       window.addEventListener('hashchange', (e) => {
-        updateActiveLink(window.location.hash);
+        if (window.location.pathname === '/') {
+          updateActiveLink(window.location.hash);
+        }
       });
+      
+      // Detectar qué sección está visible y actualizar el enlace activo
+      if (window.location.pathname === '/') {
+        // Intersection Observer para detectar secciones visibles
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+              const sectionId = entry.target.id;
+              if (sectionId) {
+                updateActiveLink(`#${sectionId}`);
+                // Actualizar URL sin recargar
+                history.replaceState(null, '', `#${sectionId}`);
+              }
+            }
+          });
+        }, { threshold: 0.5 });
+        
+        // Observar todas las secciones que corresponden a enlaces de navegación
+        document.querySelectorAll('nav a[data-section]').forEach(link => {
+          const sectionId = link.getAttribute('data-section');
+          if (sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+              sectionObserver.observe(section);
+            }
+          }
+        });
+      }
     });
   </script>
