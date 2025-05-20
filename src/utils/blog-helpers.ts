@@ -1,7 +1,10 @@
 import type { CollectionEntry } from 'astro:content';
 
+// Definir un tipo para los registros de autor
+type AuthorRecord = Record<string, string>;
+
 // Mapeos de valores predeterminados de autor para el contenido del blog
-const defaultAuthorImages: Record<string, string> = {
+const defaultAuthorImages: AuthorRecord = {
   "Maria Magdalena Peña Romero": "/images/founder-magdalena.jpg",
   "Paula Prieto Peña": "/images/founder-paula.webp",
   "Manuel Alejandro Bedoya": "/images/manuel-p1.webp",
@@ -9,7 +12,7 @@ const defaultAuthorImages: Record<string, string> = {
   "Juan Bernardo Peña": "/images/juan-p3.webp"
 };
 
-const defaultAuthorProfiles: Record<string, string> = {
+const defaultAuthorProfiles: AuthorRecord = {
   "Maria Magdalena Peña Romero": "Cofundadora y guía de mindfulness",
   "Paula Prieto Peña": "Cofundadora y facilitadora",
   "Manuel Alejandro Bedoya": "Emprendedor, amante de la tecnología y cinéfilo",
@@ -17,13 +20,22 @@ const defaultAuthorProfiles: Record<string, string> = {
   "Juan Bernardo Peña": "Escritor y abogado"
 };
 
-const defaultAuthorBios: Record<string, string> = {
-  "Maria Magdalena Peña Romero": "Acompañante y guía en el camino del mindfulness y el desarrollo personal.",
-  "Paula Prieto Peña": "Facilitadora de experiencias transformadoras a través del mindfulness y la creatividad.",
-  "Manuel Alejandro Bedoya": "Emprendedor y amante de la tecnología que explora la intersección entre el cine y el mindfulness.",
-  "Ana María Prieto": "Emprendedora y VC que integra el mindfulness en el mundo empresarial y las inversiones.",
-  "Juan Bernardo Peña": "Escritor y abogado que combina la precisión jurídica con la profundidad del mindfulness."
+const defaultAuthorBios: AuthorRecord = {
+  "Maria Magdalena Peña Romero": "Guía de mindfulness con amplia formación en psicología transpersonal. Acompaña procesos de sanación emocional y conexión interior desde la presencia amorosa y la sabiduría vivencial.",
+  "Paula Prieto Peña": "Facilitadora de experiencias transformadoras a través del mindfulness y la creatividad. Especializada en traducir la sabiduría ancestral a experiencias accesibles para el mundo contemporáneo.",
+  "Manuel Alejandro Bedoya": "Emprendedor y amante de la tecnología que explora la intersección entre el cine y el mindfulness. Comparte reflexiones sobre consciencia digital y narrativas transformadoras.",
+  "Ana María Prieto": "Emprendedora e inversionista que integra prácticas de atención plena en el mundo empresarial. Especialista en liderazgo consciente y modelos de negocio con propósito.",
+  "Juan Bernardo Peña": "Escritor y abogado que combina el rigor analítico con la profundidad contemplativa. Sus reflexiones conectan la ética, el derecho y la búsqueda existencial desde una mirada integradora."
 };
+
+// Definir la interfaz para los datos de un artículo
+interface BlogArticleData {
+  author: string;
+  authorImage?: string;
+  authorProfile?: string;
+  authorBio?: string;
+  [key: string]: any; // Para otros campos que pueda tener
+}
 
 /**
  * Obtiene los datos completos del autor para un artículo
@@ -31,24 +43,30 @@ const defaultAuthorBios: Record<string, string> = {
  * @returns Objeto con datos completos del autor
  */
 export function getAuthorData(article: CollectionEntry<'blog'>) {
-  const authorName = article.data.author;
+  const data = article.data as BlogArticleData;
+  const authorName = data.author;
   
-  // Extraer propiedades relacionadas con el autor de article.data si existen
-  // O usar valors predeterminados del mapeo basado en el nombre del autor
+  // Verificar explícitamente si las propiedades existen y no están vacías
   const authorImage = 
-    (article.data as any).authorImage || 
-    defaultAuthorImages[authorName] || 
-    "/images/placeholder-author.jpg";
-    
+    data.authorImage && data.authorImage.trim() !== "" 
+      ? data.authorImage 
+      : (authorName in defaultAuthorImages 
+          ? defaultAuthorImages[authorName] 
+          : "/images/placeholder-author.jpg");
+      
   const authorProfile = 
-    (article.data as any).authorProfile || 
-    defaultAuthorProfiles[authorName] || 
-    "";
-    
+    data.authorProfile && data.authorProfile.trim() !== "" 
+      ? data.authorProfile 
+      : (authorName in defaultAuthorProfiles 
+          ? defaultAuthorProfiles[authorName] 
+          : "");
+      
   const authorBio = 
-    (article.data as any).authorBio || 
-    defaultAuthorBios[authorName] || 
-    "";
+    data.authorBio && data.authorBio.trim() !== "" 
+      ? data.authorBio 
+      : (authorName in defaultAuthorBios 
+          ? defaultAuthorBios[authorName] 
+          : "");
   
   return {
     name: authorName,

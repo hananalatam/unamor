@@ -29,11 +29,11 @@ const {
   />
   <h3 class="text-lg font-medium">{name}</h3>
   
-  {role && (
+  {role && role.trim() !== "" && (
     <p class="text-sm text-body-500 mb-2">{role}</p>
   )}
   
-  {bio && (
+  {bio && bio.trim() !== "" && (
     <p class="text-sm text-body-600 italic mb-4">{bio}</p>
   )}
   

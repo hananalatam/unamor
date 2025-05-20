@@ -40,50 +40,6 @@
       }
     };
 
-    // Registro de componente personalizado para autores
-    CMS.registerWidget('author_selection', {
-      // Define el control que se muestra en la interfaz de edición
-      control: ({ field, onChange, value }) => {
-        const container = document.createElement('div');
-        
-        // Crear el selector
-        const select = document.createElement('select');
-        select.className = 'netlify-cms-widget-select';
-        
-        // Añadir opciones para cada autor
-        Object.keys(authorData).forEach(authorName => {
-          const option = document.createElement('option');
-          option.value = authorName;
-          option.innerText = authorName;
-          select.appendChild(option);
-        });
-        
-        // Establecer valor inicial
-        select.value = value || 'Maria Magdalena Peña Romero';
-        
-        // Manejar cambios
-        select.addEventListener('change', e => {
-          const authorName = e.target.value;
-          
-          // Acualizar el valor del campo autor
-          onChange(authorName);
-          
-          // Actualizar los campos relacionados
-          updateAuthorFields(authorName);
-        });
-        
-        container.appendChild(select);
-        return container;
-      },
-      
-      // Renderizador de vista previa
-      preview: ({ value }) => {
-        const container = document.createElement('div');
-        container.innerText = value || 'Sin autor seleccionado';
-        return container;
-      }
-    });
-
     // Función para actualizar campos relacionados con el autor
     function updateAuthorFields(authorName) {
       try {
@@ -115,7 +71,11 @@
         authorBioInput.value = author.bio;
         authorBioInput.dispatchEvent(new Event('input', { bubbles: true }));
         
-        console.log(`Datos actualizados para: ${authorName}`);
+        console.log(`Datos actualizados para: ${authorName}`, { 
+          image: author.image, 
+          profile: author.profile, 
+          bio: author.bio 
+        });
       } catch (error) {
         console.error('Error al actualizar campos de autor:', error);
       }
@@ -138,6 +98,11 @@
               updateAuthorFields(currentAuthor);
             }
             
+            // Agregar event listener al selector de autor
+            authorSelect.addEventListener('change', (e) => {
+              updateAuthorFields(e.target.value);
+            });
+            
             // Dejar de observar una vez encontrado
             observer.disconnect();
           }
@@ -148,29 +113,6 @@
       }
     });
 
-    // Configuración personalizada para vista previa
-    CMS.registerPreviewStyle(`
-      .additional-images {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-top: 2rem;
-      }
-      .image-item {
-        width: 300px;
-      }
-      .image-item img {
-        width: 100%;
-        height: auto;
-        border-radius: 0.5rem;
-      }
-      .image-caption {
-        margin-top: 0.5rem;
-        font-style: italic;
-        font-size: 0.875rem;
-      }
-    `);
-    
     // Redireccionar después de un inicio de sesión exitoso
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
