@@ -40,13 +40,15 @@ collections:
           config:
             multiple: false
         hint: "Esta imagen aparecerá grande al inicio del artículo"
-        
+      
+      # Autor como select simple
       - label: "Autor"
         name: "author"
         widget: "select"
         options: ["Maria Magdalena Peña Romero", "Paula Prieto Peña", "Manuel Alejandro Bedoya", "Ana María Prieto", "Juan Bernardo Peña"]
         default: "Maria Magdalena Peña Romero"
         
+      # Campos ocultos para info del autor
       - label: "Imagen del autor"
         name: "authorImage"
         widget: "string"
@@ -86,8 +88,7 @@ collections:
         name: "body"
         widget: "markdown"
         hint: "Aquí va el texto del artículo. Usa los botones de la barra de herramientas para añadir imágenes, citas destacadas, etc."
-        editor_components: ["easy-image", "feature-text", "quote", "image", "code-block"]
-        buttons: ["bold", "italic", "link", "heading-two", "heading-three", "heading-four", "bulleted-list", "numbered-list"]
+        buttons: ["bold", "italic", "link", "heading-two", "heading-three", "heading-four", "bulleted-list", "numbered-list", "quote"]
         
       # Widget de imágenes adicionales
       - label: "Galería de imágenes (opcional)"

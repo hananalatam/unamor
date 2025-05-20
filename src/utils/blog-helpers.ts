@@ -1,6 +1,68 @@
 import type { CollectionEntry } from 'astro:content';
 
-// Función para formatear fechas
+// Mapeos de valores predeterminados de autor para el contenido del blog
+const defaultAuthorImages: Record<string, string> = {
+  "Maria Magdalena Peña Romero": "/images/founder-magdalena.jpg",
+  "Paula Prieto Peña": "/images/founder-paula.webp",
+  "Manuel Alejandro Bedoya": "/images/manuel-p1.webp",
+  "Ana María Prieto": "/images/ana-p2.webp",
+  "Juan Bernardo Peña": "/images/juan-p3.webp"
+};
+
+const defaultAuthorProfiles: Record<string, string> = {
+  "Maria Magdalena Peña Romero": "Cofundadora y guía de mindfulness",
+  "Paula Prieto Peña": "Cofundadora y facilitadora",
+  "Manuel Alejandro Bedoya": "Emprendedor, amante de la tecnología y cinéfilo",
+  "Ana María Prieto": "Emprendedora, VC y autora",
+  "Juan Bernardo Peña": "Escritor y abogado"
+};
+
+const defaultAuthorBios: Record<string, string> = {
+  "Maria Magdalena Peña Romero": "Acompañante y guía en el camino del mindfulness y el desarrollo personal.",
+  "Paula Prieto Peña": "Facilitadora de experiencias transformadoras a través del mindfulness y la creatividad.",
+  "Manuel Alejandro Bedoya": "Emprendedor y amante de la tecnología que explora la intersección entre el cine y el mindfulness.",
+  "Ana María Prieto": "Emprendedora y VC que integra el mindfulness en el mundo empresarial y las inversiones.",
+  "Juan Bernardo Peña": "Escritor y abogado que combina la precisión jurídica con la profundidad del mindfulness."
+};
+
+/**
+ * Obtiene los datos completos del autor para un artículo
+ * @param article - Entrada de la colección que contiene datos del autor
+ * @returns Objeto con datos completos del autor
+ */
+export function getAuthorData(article: CollectionEntry<'blog'>) {
+  const authorName = article.data.author;
+  
+  // Extraer propiedades relacionadas con el autor de article.data si existen
+  // O usar valors predeterminados del mapeo basado en el nombre del autor
+  const authorImage = 
+    (article.data as any).authorImage || 
+    defaultAuthorImages[authorName] || 
+    "/images/placeholder-author.jpg";
+    
+  const authorProfile = 
+    (article.data as any).authorProfile || 
+    defaultAuthorProfiles[authorName] || 
+    "";
+    
+  const authorBio = 
+    (article.data as any).authorBio || 
+    defaultAuthorBios[authorName] || 
+    "";
+  
+  return {
+    name: authorName,
+    image: authorImage,
+    profile: authorProfile,
+    bio: authorBio
+  };
+}
+
+/**
+ * Formatea una fecha para mostrarla en formato español
+ * @param date - Fecha a formatear
+ * @returns String con la fecha formateada
+ */
 export function formatDate(date: Date): string {
   return new Intl.DateTimeFormat('es-ES', {
     year: 'numeric',
@@ -9,92 +71,32 @@ export function formatDate(date: Date): string {
   }).format(date);
 }
 
-// Función para calcular el tiempo de lectura
-export function calculateReadingTime(content: string): number {
-  const wordsPerMinute = 200;
-  const words = content.trim().split(/\s+/).length;
-  return Math.ceil(words / wordsPerMinute);
-}
-
-// Función para generar URL amigables para categorías y etiquetas
-export function slugify(text: string): string {
+/**
+ * Crea una URL amigable para SEO a partir de un texto
+ * @param text - Texto a convertir en URL
+ * @returns URL amigable
+ */
+export function createSlug(text: string): string {
   return text
     .toString()
-    .toLowerCase()
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
     .replace(/\s+/g, '-')
     .replace(/[^\w-]+/g, '')
-    .replace(/--+/g, '-')
-    .replace(/^-+/, '')
-    .replace(/-+$/, '');
+    .replace(/--+/g, '-');
 }
 
-// Función para obtener posts destacados
-export function getFeaturedPosts(posts: CollectionEntry<'blog'>[]): CollectionEntry<'blog'>[] {
-  return posts
-    .filter(post => post.data.featured && !post.data.draft)
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-}
-
-// Función para obtener posts recientes
-export function getRecentPosts(posts: CollectionEntry<'blog'>[], limit: number = 6): CollectionEntry<'blog'>[] {
-  return posts
-    .filter(post => !post.data.draft)
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-    .slice(0, limit);
-}
-
-// Función para obtener todas las categorías únicas
-export function getAllCategories(posts: CollectionEntry<'blog'>[]): string[] {
-  const categories = new Set<string>();
+/**
+ * Calcula el tiempo estimado de lectura para un texto
+ * @param content - Contenido del artículo
+ * @returns Número estimado de minutos de lectura
+ */
+export function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 225; // Velocidad de lectura promedio
+  const wordCount = content.split(/\s+/).length;
+  const readingTime = Math.ceil(wordCount / wordsPerMinute);
   
-  posts.forEach(post => {
-    if (post.data.category) {
-      categories.add(post.data.category);
-    }
-  });
-  
-  return Array.from(categories).sort();
-}
-
-// Función para obtener todas las etiquetas únicas
-export function getAllTags(posts: CollectionEntry<'blog'>[]): string[] {
-  const tags = new Set<string>();
-  
-  posts.forEach(post => {
-    if (post.data.tags && Array.isArray(post.data.tags)) {
-      post.data.tags.forEach(tag => tags.add(tag));
-    }
-  });
-  
-  return Array.from(tags).sort();
-}
-
-// Función para obtener posts relacionados (misma categoría, excluyendo el actual)
-export function getRelatedPosts(
-  posts: CollectionEntry<'blog'>[], 
-  currentPost: CollectionEntry<'blog'>, 
-  limit: number = 3
-): CollectionEntry<'blog'>[] {
-  return posts
-    .filter(post => !post.data.draft && 
-                   post.slug !== currentPost.slug && 
-                   post.data.category === currentPost.data.category)
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
-    .slice(0, limit);
-}
-
-// Función para buscar posts por texto
-export function searchPosts(posts: CollectionEntry<'blog'>[], query: string): CollectionEntry<'blog'>[] {
-  const searchTerm = query.toLowerCase();
-  
-  return posts
-    .filter(post => !post.data.draft && (
-      post.data.title.toLowerCase().includes(searchTerm) ||
-      post.data.description.toLowerCase().includes(searchTerm) ||
-      post.data.category.toLowerCase().includes(searchTerm) ||
-      (post.data.tags && post.data.tags.some(tag => tag.toLowerCase().includes(searchTerm)))
-    ))
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  return readingTime < 1 ? 1 : readingTime;
 }
