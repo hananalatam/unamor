@@ -23,6 +23,9 @@ updatedDate: 2025-05-19
 heroImage: /images/blog/interestelarok.webp
 author: Manuel Alejandro Bedoya
 authorImage: /images/manuel-p1.webp
+authorProfile: Emprendedor, apasionado de la tecnología y cinéfilo
+authorBio: Emprendedor y apasionado de la tecnología que explora la intersección
+  entre el cine y el mindfulness.
 category: Relaciones
 featured: true
 draft: false
