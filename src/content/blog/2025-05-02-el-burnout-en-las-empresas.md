@@ -1,4 +1,17 @@
 ---
+heroImage: /images/blog/fases-del-burnout.jpeg
+draft: false
+updatedDate: 2025-05-01
+pubDate: 2025-05-01
+author: Maria Magdalena Peña Romero
+featured: true
+authorImage: /images/founder-magdalena.jpg
+minutesRead: 5
+title: El Burnout en las Empresas
+tags:
+  - bornout
+  - mindfulness
+  - ""
 guide: >-
   ### Cómo insertar imágenes en el texto
 
@@ -12,32 +25,17 @@ guide: >-
   4. Sube la imagen y selecciona su posición (izquierda, derecha o completa)
 
   5. ¡Listo! La imagen aparecerá en el texto
-title: El Burnout en las Empresas
 description: "El burnout representa una desconexión profunda con nosotros mismos
   y con lo esencial de nuestra vida, manifestándose como un agotamiento que
   trasciende lo meramente físico para afectar nuestra dimensión emocional y
   espiritual. "
-pubDate: 2025-05-01
-updatedDate: 2025-05-01
-heroImage: /images/blog/bornout.webp
-author: Maria Magdalena Peña Romero
-authorImage: /images/founder-magdalena.jpg
 category: Bienestar
-featured: true
-draft: false
-tags:
-  - bornout
-  - mindfulness
-  - ""
-minutesRead: 5
 ---
 # El Burnout en las Empresas: Una Perspectiva desde Un Amor Consciente
 
 El burnout representa una desconexión profunda con nosotros mismos y con lo esencial de nuestra vida, manifestándose como un agotamiento que trasciende lo meramente físico para afectar nuestra dimensión emocional y espiritual. Desde la perspectiva de Un Amor Consciente, podemos abordar este fenómeno empresarial con una mirada compasiva y transformadora.
 
 ![](/images/blog/fases-del-burnout.jpeg)
-
-
 
 ## Reconectando con lo esencial en el entorno laboral
 
@@ -98,7 +96,7 @@ Desde Un Amor Consciente, ofrecemos estas prácticas para nutrir nuestra relaci�
 * Practicar la gratitud por las oportunidades de aprendizaje y crecimiento
 * Visualizar el trabajo como un vehículo para la expresión de dones únicos
 
-![](/images/blog/bornout-0.jpg)
+![](/images/blog/bornout.webp)
 
 ## Hacia organizaciones más conscientes y humanas
 
