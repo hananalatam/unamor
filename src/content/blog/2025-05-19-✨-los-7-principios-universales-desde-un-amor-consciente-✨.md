@@ -1,5 +1,5 @@
 ---
-heroImage: /images/blog/universo-e-las-manos.jpg
+heroImage: /images/blog/universo-e-las-manos.webp
 draft: false
 updatedDate: 2025-05-19
 pubDate: 2025-05-19
