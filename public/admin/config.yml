@@ -15,10 +15,6 @@ logo_url: https://unamorconsciente.netlify.app/images/unamorconsciente.svg
 
 # Configuración para mejorar la carga de medios
 show_preview_links: false
-media_library:
-  name: default
-  config:
-    max_file_size: 10000000  # 10MB máximo por archivo
 
 # Mensaje de ayuda que aparecerá en el panel
 editor:
