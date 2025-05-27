@@ -2,104 +2,55 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: "public/images/blog" # Donde se guardarán las imágenes subidas
-public_folder: "/images/blog" # URL pública para las imágenes
+# Configuración de medios
+media_folder: "public/images/blog"
+public_folder: "/images/blog"
 
-# CLAVE: Configuración del workflow para evitar problemas con uploads
-publish_mode: simple  # Esto evita que las imágenes se queden en draft
+# Workflow simple (sin drafts)
+publish_mode: simple
 
-# Configuración del panel de administración
+# Configuración del sitio
 site_url: https://unamorconsciente.netlify.app
 display_url: https://unamorconsciente.netlify.app
-logo_url: https://unamorconsciente.netlify.app/images/unamorconsciente.svg
 
-# Configuración para mejorar la carga de medios
+# IMPORTANTE: Configuración específica para debugging
+local_backend: false
 show_preview_links: false
 
-# Mensaje de ayuda que aparecerá en el panel
+# Configuración del editor
 editor:
-  preview: true
-  
-# Plantillas de colecciones
+  preview: false  # Deshabilitamos preview temporalmente
+
+# Colección simple para testing
 collections:
-  - name: "blog" # Nombre de la colección en Netlify CMS
-    label: "Blog" # Nombre visible en el CMS
-    folder: "src/content/blog" # Carpeta donde se guardarán los archivos
-    create: true # Permitir crear nuevos artículos
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Formato del slug
-    summary: "{{title}} - {{author}} ({{day}}/{{month}}/{{year}})" # Formato de resumen en la lista
-    editor:
-      preview: true
-    fields: # Campos que se mostrarán en el formulario
-      - {label: "⭐ Guía de uso", name: "guide", widget: "markdown", required: false, minimal: true, buttons: [], editable: false, default: "### Cómo insertar imágenes en el texto\n\n1. Escribe tu texto normalmente\n2. Cuando quieras insertar una imagen, haz clic en el botón '+' en la barra de herramientas\n3. Selecciona 'Imagen en artículo'\n4. Sube la imagen y selecciona su posición (izquierda, derecha o completa)\n5. ¡Listo! La imagen aparecerá en el texto"}
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}} - {{author}}"
+    fields:
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Descripción", name: "description", widget: "text"}
+      - {label: "Fecha de publicación", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD"}
       
-      - {label: "Título", name: "title", widget: "string", hint: "Título del artículo (70 caracteres máx. recomendado)"}
-      - {label: "Descripción", name: "description", widget: "text", hint: "Breve resumen del artículo (150-160 caracteres recomendado)"}
-      - {label: "Fecha de publicación", name: "pubDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false}
-      - {label: "Fecha de actualización", name: "updatedDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, required: false}
-      
+      # Campo de imagen simple para testing
       - label: "Imagen principal"
         name: "heroImage"
         widget: "image"
-        required: true
-        hint: "Esta imagen aparecerá grande al inicio del artículo"
+        required: false
+        hint: "Sube una imagen de prueba"
       
-      # Autor como select simple
       - label: "Autor"
         name: "author"
         widget: "select"
-        options: ["Maria Magdalena Peña Romero", "Paula Prieto Peña", "Manuel Alejandro Bedoya", "Ana María Prieto", "Juan Bernardo Peña"]
+        options: ["Maria Magdalena Peña Romero", "Paula Prieto Peña", "Manuel Alejandro Bedoya"]
         default: "Maria Magdalena Peña Romero"
-        
-      # Campos ocultos para info del autor
-      - label: "Imagen del autor"
-        name: "authorImage"
-        widget: "string"
-        required: false
-        hint: "Se llenará automáticamente según el autor elegido"
-        
-      - label: "Perfil del autor"
-        name: "authorProfile"
-        widget: "string"
-        required: false
-        hint: "Se llenará automáticamente según el autor elegido"
-        
-      - label: "Biografía del autor"
-        name: "authorBio"
-        widget: "string"
-        required: false
-        hint: "Se llenará automáticamente según el autor elegido"
         
       - label: "Categoría"
         name: "category"
         widget: "select"
-        options: ["Mindfulness", "Relaciones", "Sanación Emocional", "Bienestar", "Espiritualidad"]
+        options: ["Mindfulness", "Relaciones", "Bienestar"]
         
-      - {label: "Destacado", name: "featured", widget: "boolean", default: false, hint: "Marca para mostrar este artículo en posición destacada"}
-      - {label: "Borrador", name: "draft", widget: "boolean", default: false, hint: "Marca si no quieres que se publique aún"}
-      
-      - label: "Etiquetas"
-        name: "tags"
-        widget: "list"
-        hint: "Añade etiquetas relacionadas con el contenido"
-        min: 1
-        max: 5
-        
-      - {label: "Tiempo de lectura (minutos)", name: "minutesRead", widget: "number", default: 5, value_type: "int", min: 1, max: 30}
-      
-      - label: "Contenido"
-        name: "body"
-        widget: "markdown"
-        hint: "Aquí va el texto del artículo. Usa los botones de la barra de herramientas para añadir imágenes, citas destacadas, etc."
-        buttons: ["bold", "italic", "link", "heading-two", "heading-three", "heading-four", "bulleted-list", "numbered-list", "quote"]
-        
-      # Widget de imágenes adicionales
-      - label: "Galería de imágenes (opcional)"
-        name: "extraImages"
-        widget: "list"
-        required: false
-        summary: "Imagen: {{fields.caption}}"
-        hint: "Añade imágenes adicionales para mostrar en una galería al final del artículo"
-        fields:
-          - {label: "Imagen", name: "image", widget: "image"}
-          - {label: "Descripción", name: "caption", widget: "string"}
+      - {label: "Borrador", name: "draft", widget: "boolean", default: false}
+      - {label: "Contenido", name: "body", widget: "markdown"}

@@ -7,27 +7,11 @@
   command = "npm run dev"
   framework = "astro"
 
-# Configuración para Netlify Identity (sin redirección problemática)
-[template.environment]
-  NETLIFY_USE_EDGE_FUNCTIONS = "true"
-
 # Redirección para el panel de administración de Netlify CMS
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
-
-# Redirecciones para rutas del blog (si usas routing dinámico)
-[[redirects]]
-  from = "/blog/*"
-  to = "/blog/index.html"
-  status = 200
-
-# ELIMINAMOS la regla problemática:
-# [[redirects]]
-#   from = "/.netlify/identity/*"  <- ESTA LÍNEA CAUSABA EL ERROR
-#   to = "/.netlify/identity/:splat"
-#   status = 200
 
 # Redirección para páginas 404
 [[redirects]]
@@ -35,21 +19,32 @@
   to = "/404.html"
   status = 404
 
-# Headers de seguridad
+# Headers de seguridad CORREGIDOS para Netlify CMS
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "SAMEORIGIN"  # Cambiado para permitir Netlify CMS
+    X-Frame-Options = "SAMEORIGIN"  # Permitir frames para CMS
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
 
-# Headers específicos para Netlify CMS
+# Headers específicos para Netlify CMS (MUY IMPORTANTE)
 [[headers]]
   for = "/admin/*"
   [headers.values]
     X-Frame-Options = "SAMEORIGIN"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://identity.netlify.com https://unpkg.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; connect-src 'self' https://api.netlify.com;"
+    # CSP CORREGIDO - permite blobs y todos los recursos necesarios
+    Content-Security-Policy = """
+      default-src 'self'; 
+      script-src 'self' 'unsafe-inline' 'unsafe-eval' https://identity.netlify.com https://unpkg.com; 
+      style-src 'self' 'unsafe-inline'; 
+      img-src 'self' data: blob: https:; 
+      connect-src 'self' blob: https://api.netlify.com https://identity.netlify.com;
+      font-src 'self' data:;
+      media-src 'self' blob:;
+      object-src 'none';
+      base-uri 'self';
+    """
 
 # Cache para assets
 [[headers]]
