@@ -2,7 +2,7 @@
 title: Un Amor Consciente
 description: '"No podemos acompañar a otros por un camino que no hemos transitado."'
 pubDate: 2025-05-27
-heroImage: /images/blog/images-amor2.jpg
+heroImage: /images/blog/images-amor.svg
 author: Maria Magdalena Peña Romero
 category: Mindfulness
 draft: false
