@@ -5,10 +5,20 @@ backend:
 media_folder: "public/images/blog" # Donde se guardarán las imágenes subidas
 public_folder: "/images/blog" # URL pública para las imágenes
 
+# CLAVE: Configuración del workflow para evitar problemas con uploads
+publish_mode: simple  # Esto evita que las imágenes se queden en draft
+
 # Configuración del panel de administración
 site_url: https://unamorconsciente.netlify.app
 display_url: https://unamorconsciente.netlify.app
 logo_url: https://unamorconsciente.netlify.app/images/unamorconsciente.svg
+
+# Configuración para mejorar la carga de medios
+show_preview_links: false
+media_library:
+  name: default
+  config:
+    max_file_size: 10000000  # 10MB máximo por archivo
 
 # Mensaje de ayuda que aparecerá en el panel
 editor:
@@ -36,9 +46,6 @@ collections:
         name: "heroImage"
         widget: "image"
         required: true
-        media_library:
-          config:
-            multiple: false
         hint: "Esta imagen aparecerá grande al inicio del artículo"
       
       # Autor como select simple
