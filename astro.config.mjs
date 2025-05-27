@@ -1,8 +1,6 @@
 import { defineConfig } from "astro/config";
 import tailwind from '@astrojs/tailwind';
-import sitemap from '@astrojs/sitemap';    // ← IMPORTA sitemap
-
-
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,12 +14,8 @@ export default defineConfig({
       build: {
         cssCodeSplit: true,
         cssMinify: true,
-        minify: 'terser',
-        terserOptions: {
-          format: {
-            comments: false,
-          },
-        },
+        minify: 'esbuild', // Cambio de terser a esbuild
+        // Eliminamos terserOptions ya que usamos esbuild
       },
     },
   });
