@@ -1,4 +1,15 @@
 ---
+heroImage: /images/blog/universo-e-las-manos.jpg
+draft: false
+updatedDate: 2025-05-19
+pubDate: 2025-05-19
+author: Maria Magdalena Peña Romero
+featured: true
+authorImage: /images/founder-magdalena.jpg
+minutesRead: 5
+title: Los 7 Principios Universales desde Un Amor Consciente.
+tags:
+  - Autoconocimiento
 guide: >-
   ### Cómo insertar imágenes en el texto
 
@@ -12,21 +23,10 @@ guide: >-
   4. Sube la imagen y selecciona su posición (izquierda, derecha o completa)
 
   5. ¡Listo! La imagen aparecerá en el texto
-title: Los 7 Principios Universales desde Un Amor Consciente.
 description: |-
   ¿Y si el secreto no está en hacer más, sino en vivir con más conciencia?
   Estos 7 principios, unidos al mindfulness, pueden ser la brújula que buscabas.
-pubDate: 2025-05-19
-updatedDate: 2025-05-19
-heroImage: /images/blog/universo-e-las-manos.jpg
-author: Maria Magdalena Peña Romero
-authorImage: /images/founder-magdalena.jpg
 category: Espiritualidad
-featured: true
-draft: false
-tags:
-  - Autoconocimiento
-minutesRead: 5
 ---
 
 
